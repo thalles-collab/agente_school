@@ -1,0 +1,2984 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#F4F2EC">
+<title>agente•school — A sua escola pronta para crescer.</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300;9..144,400;9..144,500&family=Geist+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper: #F4F2EC;
+  --paper-deep: #E5E2D8;
+  --ink: #0E0D0B;
+  --ink-soft: #2A2825;
+  --rule: #D4D0C5;
+  --gray: #8B877F;
+  --gray-deep: #5C5A54;
+
+  --signal: #FF4A1C;
+  --emerald: #15B886;
+  --emerald-deep: #0F8E69;
+  --emerald-soft: rgba(21,184,134,0.08);
+
+  --serif: 'Fraunces', serif;
+  --mono: 'Geist Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  background-image: radial-gradient(circle at 1px 1px, rgba(10,9,8,0.025) 1px, transparent 0);
+  background-size: 24px 24px;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  body::before { display: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: light only; }
+  body {
+    background-color: var(--paper) !important;
+    color: var(--ink) !important;
+  }
+  body::before { display: none; }
+}
+
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 56px; }
+
+/* MARK */
+.mark {
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--ink);
+}
+.mark .sep {
+  display: inline-block;
+  width: 0.16em;
+  height: 0.16em;
+  border-radius: 50%;
+  background-color: var(--emerald);
+  margin: 0 0.18em;
+  flex-shrink: 0;
+  align-self: baseline;
+}
+.mark .lab { font-weight: 400; color: var(--gray-deep); }
+.mark.xl { font-size: 96px; }
+.mark.lg { font-size: 64px; }
+.mark.md { font-size: 32px; }
+.mark.sm { font-size: 18px; letter-spacing: -0.045em; }
+.mark.xs { font-size: 14px; letter-spacing: -0.04em; }
+
+.dark-section .mark { color: var(--paper); }
+.dark-section .mark .lab { color: rgba(244,242,236,0.55); }
+
+/* NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 56px;
+  background: rgba(244,242,236,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-mother {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-deep);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-mother .signal-dot {
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.nav-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--emerald); }
+
+.nav-ctas { display: flex; gap: 10px; align-items: center; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-ghost { background: transparent; color: var(--ink-soft); }
+.btn-ghost:hover { color: var(--ink); }
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--emerald); }
+.btn-emerald { background: var(--emerald); color: var(--paper); }
+.btn-emerald:hover { background: var(--emerald-deep); }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--paper); }
+.btn.lg { padding: 14px 24px; font-size: 14px; }
+
+/* HERO */
+.hero {
+  padding: 100px 0 120px;
+  position: relative;
+  border-bottom: 1px solid var(--ink);
+  overflow: hidden;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  margin-bottom: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--emerald);
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(64px, 9vw, 144px);
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  max-width: 1100px;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald);
+}
+
+.hero-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--gray-deep);
+  margin-top: 36px;
+  max-width: 660px;
+  line-height: 1.45;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  margin-top: 48px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 80px;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-deep);
+  flex-wrap: wrap;
+}
+.hero-meta-proof { margin-top: 56px; gap: 10px; }
+.hero-proof-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--gray-deep);
+  text-transform: uppercase;
+}
+.hero-proof-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  text-transform: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+}
+
+/* SECTION */
+.section { padding: 140px 0; border-bottom: 1px solid var(--ink); position: relative; }
+.section.dark-section { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.section-head {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 56px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+
+.section-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 96px;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+.dark-section .section-num { color: var(--paper); }
+.section-num small {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray-deep);
+  margin-top: 14px;
+}
+.dark-section .section-num small { color: rgba(244,242,236,0.45); }
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.section-title em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+.section-title .accent { color: var(--emerald); font-style: italic; }
+
+.section-lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--gray-deep);
+  max-width: 720px;
+  line-height: 1.5;
+  margin-top: 20px;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.dark-section .section-lead { color: rgba(244,242,236,0.65); }
+
+/* === BRIDGE: bloco que conecta calculadora ao WHY === */
+.bridge {
+  margin-bottom: 72px;
+  padding: 32px 36px;
+  background: var(--paper-deep);
+  border-left: 3px solid var(--emerald);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.bridge-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--emerald-deep);
+  font-weight: 600;
+}
+.bridge-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  line-height: 1.4;
+  flex: 1;
+  min-width: 280px;
+}
+.bridge-text strong {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--emerald-deep);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+/* WHY — problem/solution */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.problem-cell {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 380px;
+  position: relative;
+}
+
+.problem-cell.bad { background: rgba(255,74,28,0.025); }
+.problem-cell.good { background: var(--emerald-soft); }
+
+.problem-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.problem-tag.bad { color: var(--signal); }
+.problem-tag.good { color: var(--emerald); }
+
+.problem-h {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.problem-h em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+.problem-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.problem-list li {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  padding-left: 22px;
+  position: relative;
+}
+
+.problem-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 8px;
+  height: 8px;
+}
+.problem-cell.bad .problem-list li::before {
+  background: var(--signal);
+  clip-path: polygon(20% 0, 0 20%, 30% 50%, 0 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0, 50% 30%);
+}
+.problem-cell.good .problem-list li::before {
+  background: var(--emerald);
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  top: 8px;
+  left: 1px;
+}
+
+/* === MODULES — accordion agrupado === */
+.modules-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.modules-group-head {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 32px;
+  align-items: baseline;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.modules-group-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--emerald);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.modules-group-title {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.modules-group-title em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+.modules-group-desc {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--gray-deep);
+  margin-top: 8px;
+  line-height: 1.5;
+  max-width: 640px;
+}
+
+.module-accordion {
+  border-top: 1px solid var(--rule);
+}
+
+.module-row {
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.module-row:hover { background: rgba(21,184,134,0.04); }
+.module-row.open { background: var(--emerald-soft); }
+
+.module-row-header {
+  display: grid;
+  grid-template-columns: 60px 36px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 22px 16px;
+}
+
+.module-row-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--gray-deep);
+}
+
+.module-row-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--paper);
+  transition: background 0.2s;
+}
+.module-row.open .module-row-icon { background: var(--emerald); }
+
+.module-row-name {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.module-row-name em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald-deep);
+}
+
+.module-row-toggle {
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--gray-deep);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, color 0.2s;
+}
+.module-row.open .module-row-toggle {
+  transform: rotate(45deg);
+  color: var(--emerald-deep);
+}
+
+.module-row-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.module-row.open .module-row-body { max-height: 320px; }
+
+.module-row-body-inner {
+  padding: 0 16px 28px 116px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.module-row-desc {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 720px;
+}
+
+.module-row-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.module-row-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 3px 9px;
+  background: rgba(14,13,11,0.05);
+  border-radius: 100px;
+  letter-spacing: 0.06em;
+  color: var(--gray-deep);
+}
+.module-row.open .module-row-tag {
+  background: rgba(21,184,134,0.12);
+  color: var(--emerald-deep);
+}
+
+/* DASHBOARD MOCK */
+.dash-showcase {
+  margin-top: 80px;
+  padding: 80px 64px;
+  background: var(--ink);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-showcase-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  margin-bottom: 24px;
+}
+
+.dash-showcase-h {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 16px;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  max-width: 720px;
+}
+.dash-showcase-h em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald);
+}
+
+.dash-showcase-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(244,242,236,0.7);
+  margin-bottom: 56px;
+  max-width: 600px;
+  line-height: 1.5;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+
+.dashboard {
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 12px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(244,242,236,0.1);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.dash-side {
+  background: var(--paper-deep);
+  padding: 24px 18px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dash-side-logo { padding: 6px 6px 24px; }
+
+.dash-side-section {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-deep);
+  padding: 14px 12px 6px;
+}
+
+.dash-side-item {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-deep);
+  border-radius: 6px;
+}
+.dash-side-item.active {
+  background: rgba(21,184,134,0.1);
+  color: var(--emerald-deep);
+  font-weight: 600;
+}
+.dash-side-item .badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 100px;
+  background: rgba(21,184,134,0.18);
+  color: var(--emerald-deep);
+}
+
+.dash-content { padding: 32px 36px 40px; }
+
+.dash-h {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  margin-bottom: 4px;
+}
+.dash-h em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+.dash-sub {
+  font-size: 13px;
+  color: var(--gray-deep);
+  margin-bottom: 28px;
+}
+
+.dash-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.dash-stat {
+  padding: 16px 18px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.dash-stat-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-deep);
+  margin-bottom: 6px;
+}
+
+.dash-stat-num {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.dash-stat-num em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald);
+}
+
+.dash-stat-trend {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--emerald-deep);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+}
+
+.dash-list-h {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-deep);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dash-row {
+  display: grid;
+  grid-template-columns: 30px 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.dash-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--emerald);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dash-avatar.iris { background: var(--signal); }
+.dash-avatar.cobalt { background: #2563EB; }
+.dash-avatar.coral { background: #F97373; }
+
+.dash-row-name {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.dash-row-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--gray-deep);
+  letter-spacing: 0.04em;
+}
+
+.dash-row-status {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.dash-row-status.live {
+  background: rgba(21,184,134,0.1);
+  color: var(--emerald-deep);
+  border: 1px solid rgba(21,184,134,0.22);
+}
+.dash-row-status.pending {
+  background: rgba(255,74,28,0.08);
+  color: var(--signal);
+  border: 1px solid rgba(255,74,28,0.2);
+}
+
+.dash-row-amount {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* === WHAT CHANGES — agora alinhado com problemas === */
+.changes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.change-card {
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  padding: 40px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 360px;
+}
+
+.change-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--emerald-deep);
+  font-weight: 600;
+}
+
+.change-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  color: var(--ink);
+}
+.change-title em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald-deep);
+}
+
+.change-pitch {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--gray-deep);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  line-height: 1.4;
+  margin-top: -4px;
+}
+
+.change-desc {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  flex: 1;
+}
+
+.change-stats {
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.change-stat {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--gray-deep);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.change-stat strong {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald-deep);
+  letter-spacing: -0.01em;
+}
+
+/* === PROBLEMAS RESOLVIDOS (NUMBERS) === */
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.number-cell {
+  border: 1px solid rgba(244,242,236,0.15);
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.number-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  font-weight: 600;
+}
+
+.number {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 44px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--paper);
+  margin-bottom: 8px;
+}
+
+.number-mechanism {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(244,242,236,0.75);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  line-height: 1.6;
+}
+.number-mechanism strong {
+  font-weight: 500;
+  color: var(--paper);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+.numbers-footnote {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(244,242,236,0.15);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(244,242,236,0.55);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* === JORNADA === */
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 0;
+  margin-bottom: 56px;
+}
+
+.journey-card {
+  border-left: 1px solid var(--ink);
+  padding: 0 0 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.journey-card-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald);
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.journey-card-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-deep);
+  margin-bottom: 8px;
+}
+
+.journey-card-h {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.journey-card-h em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald);
+}
+
+.journey-card-body {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--gray-deep);
+  font-weight: 400;
+}
+
+/* Promessa de ROI no fim da jornada */
+.journey-promise {
+  margin-top: 40px;
+  padding: 36px 40px;
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.journey-promise-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.journey-promise-text {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  line-height: 1.4;
+  flex: 1;
+  min-width: 320px;
+  letter-spacing: -0.01em;
+}
+.journey-promise-text em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald);
+}
+
+/* FAQ */
+.faq-list {
+  border-top: 1px solid var(--ink);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--rule);
+  padding: 28px 0;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 32px;
+  align-items: start;
+  cursor: pointer;
+  transition: background 0.2s, padding 0.2s;
+}
+.faq-item:hover { background: var(--paper-deep); padding-left: 16px; padding-right: 16px; }
+
+.faq-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--emerald);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  letter-spacing: -0.02em;
+}
+
+.faq-q {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  margin-bottom: 8px;
+}
+.faq-q em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+.faq-a {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--gray-deep);
+  max-width: 720px;
+}
+
+/* CTA BIG / CONTATO */
+.cta-big {
+  padding: 100px 0;
+  background: var(--emerald);
+  color: var(--paper);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink);
+}
+
+.cta-big-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244,242,236,0.7);
+  margin-bottom: 24px;
+  display: inline-block;
+}
+
+.cta-big-h {
+  font-family: var(--serif);
+  font-size: clamp(48px, 5.5vw, 80px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  max-width: none;
+  margin: 0 0 32px 0;
+}
+.cta-big-h em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--ink);
+}
+
+.cta-big-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 300;
+  margin-top: 0;
+  color: rgba(244,242,236,0.85);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  line-height: 1.5;
+  max-width: 540px;
+}
+
+/* CONTATO */
+.contato-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.contato-left { padding-top: 8px; }
+
+.contato-whatsapp {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(244, 242, 236, 0.2);
+}
+
+.contato-whatsapp-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 242, 236, 0.6);
+  margin-bottom: 12px;
+}
+
+.contato-whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--paper);
+  text-decoration: none;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  letter-spacing: -0.01em;
+  transition: color 0.15s, border-bottom-color 0.15s;
+  border-bottom: 1px solid rgba(244, 242, 236, 0.4);
+  padding-bottom: 4px;
+}
+.contato-whatsapp-link:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+.contato-whatsapp-link strong {
+  font-weight: 600;
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 18px;
+  letter-spacing: 0;
+}
+.contato-whatsapp-link .wa-icon {
+  color: var(--paper);
+  font-size: 14px;
+}
+.contato-whatsapp-link:hover .wa-icon { color: var(--ink); }
+
+.contato-whatsapp-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: rgba(244, 242, 236, 0.5);
+  margin-top: 8px;
+}
+
+/* CONTATO QUENTE — form curto após calculadora */
+.contato-quente {
+  background: var(--emerald);
+  color: var(--paper);
+  padding: 80px 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+.contato-quente-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.contato-quente-left {
+  padding-right: 24px;
+}
+
+.contato-quente-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244, 242, 236, 0.75);
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.contato-quente-h {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  margin-bottom: 20px;
+}
+.contato-quente-h em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--ink);
+}
+
+.contato-quente-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  font-weight: 300;
+  color: rgba(244, 242, 236, 0.9);
+  line-height: 1.5;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  max-width: 480px;
+}
+
+.contato-quente-form {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 24px 56px rgba(0,0,0,0.18);
+}
+
+.contato-quente-form-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  font-weight: 600;
+}
+
+.contato-quente-form-intro {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  color: var(--ink);
+}
+.contato-quente-form-intro em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald);
+}
+
+@media (max-width: 1100px) {
+  .contato-quente-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contato-quente-left { padding-right: 0; }
+}
+.contato-form {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 32px 64px rgba(0,0,0,0.15);
+}
+
+.contato-form-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.contato-form-intro {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.contato-form-intro em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald);
+}
+
+.contato-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.contato-field label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-deep);
+  font-weight: 500;
+}
+
+.contato-field input {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  padding: 10px 0;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.contato-field input::placeholder {
+  color: rgba(14, 13, 11, 0.35);
+  font-style: italic;
+}
+.contato-field input:focus { border-bottom-color: var(--emerald); }
+
+.contato-submit {
+  margin-top: 16px;
+  background: var(--emerald);
+  color: var(--paper);
+  border: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 18px 24px;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-align: center;
+}
+.contato-submit:hover { background: var(--emerald-deep); }
+.contato-submit.success { background: var(--ink); cursor: default; }
+
+.contato-form-disclaimer {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gray-deep);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  text-align: center;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 100px 0 40px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 56px;
+  padding-bottom: 80px;
+  border-bottom: 1px solid rgba(244,242,236,0.15);
+}
+
+.footer-brand .mark { font-size: 36px; margin-bottom: 16px; }
+
+.footer-brand p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(244,242,236,0.65);
+  max-width: 320px;
+  line-height: 1.5;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+
+.footer-col-h {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244,242,236,0.45);
+  margin-bottom: 18px;
+}
+
+.footer-col-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col-list a {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: rgba(244,242,236,0.85);
+  text-decoration: none;
+  transition: color 0.2s;
+  letter-spacing: -0.01em;
+}
+.footer-col-list a:hover { color: var(--emerald); }
+
+.footer-family-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 100px;
+  background: rgba(255,74,28,0.15);
+  color: var(--signal);
+  letter-spacing: 0.08em;
+  margin-left: 6px;
+}
+.footer-family-tag.live { background: rgba(21,184,134,0.15); color: var(--emerald); }
+
+.footer-bottom {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(244,242,236,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244,242,236,0.4);
+}
+
+.footer-mother-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(244,242,236,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-mother-link:hover { color: var(--paper); }
+.footer-mother-link .mom-dot {
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+/* CALCULADORA — agora 2 colunas (antes/depois) */
+.calculadora-section { background: var(--paper); }
+
+.calculadora-card {
+  margin-top: 64px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  position: relative;
+}
+
+.calculadora-input-area {
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(244, 242, 236, 0.15);
+}
+
+.calculadora-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 242, 236, 0.6);
+  margin-bottom: 16px;
+}
+
+.calculadora-input-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.calculadora-input {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 64px;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--emerald);
+  color: var(--emerald);
+  width: 220px;
+  outline: none;
+  padding: 4px 0;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.calculadora-input::-webkit-inner-spin-button,
+.calculadora-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.calculadora-input-suffix {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(244, 242, 236, 0.6);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+
+.calculadora-slider-wrap { margin-top: 24px; max-width: 480px; }
+
+.calculadora-slider {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(244, 242, 236, 0.12);
+  outline: none;
+  cursor: pointer;
+}
+.calculadora-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--emerald);
+  cursor: pointer;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+}
+.calculadora-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--emerald);
+  cursor: pointer;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+}
+
+.calculadora-slider-marks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: rgba(244, 242, 236, 0.45);
+}
+
+/* 2-coluna comparativa */
+.calculadora-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: rgba(244, 242, 236, 0.08);
+}
+
+.calc-col {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--ink);
+}
+
+.calc-col.hoje {
+  background: rgba(255, 74, 28, 0.05);
+}
+
+.calc-col.com {
+  background: rgba(21, 184, 134, 0.05);
+}
+
+.calc-col-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.calc-col.hoje .calc-col-tag { color: var(--signal); }
+.calc-col.com .calc-col-tag { color: var(--emerald); }
+
+.calc-col-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  color: var(--paper);
+}
+.calc-col-title em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+.calc-col.hoje .calc-col-title em { color: var(--signal); }
+.calc-col.com .calc-col-title em { color: var(--emerald); }
+
+.calc-col-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+  margin-bottom: auto;
+}
+
+.calc-item {
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(244, 242, 236, 0.08);
+}
+.calc-col-items .calc-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.calc-item-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(244, 242, 236, 0.55);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.calc-item-value {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 28px;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--paper);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.calc-item-desc {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(244, 242, 236, 0.75);
+  line-height: 1.5;
+  margin-top: 2px;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.calc-item-desc em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+/* Totalizador da coluna esquerda */
+.calc-col-total {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 2px solid rgba(255, 74, 28, 0.3);
+}
+
+.calc-total-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--signal);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.calc-total-value {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 48px;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--signal);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.calc-total-anual {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(244, 242, 236, 0.6);
+  margin-top: 10px;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  line-height: 1.4;
+}
+.calc-total-anual strong {
+  color: var(--paper);
+  font-weight: 500;
+}
+
+/* Bloco de "marca" da coluna direita (substitui o totalizador) */
+.calc-col-stamp {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 2px solid rgba(21, 184, 134, 0.3);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--paper);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  line-height: 1.45;
+}
+.calc-col-stamp em {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--emerald);
+}
+
+.calculadora-cta {
+  margin-top: 8px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(244, 242, 236, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.calculadora-cta-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--paper);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  flex: 1;
+  min-width: 280px;
+  line-height: 1.5;
+}
+.calculadora-cta-text strong {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--emerald);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+.calculadora-disclaimer {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: rgba(244, 242, 236, 0.4);
+  line-height: 1.6;
+  text-align: center;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(244, 242, 236, 0.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .changes-grid { grid-template-columns: 1fr 1fr; }
+  .numbers-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .dashboard { grid-template-columns: 1fr; }
+  .dash-side { display: none; }
+  .calculadora-card { grid-template-columns: 1fr; padding: 36px 28px; gap: 32px; }
+  .calculadora-input-area {
+    padding-right: 0;
+    border-right: none;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(244, 242, 236, 0.15);
+  }
+  .journey-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .contato-grid { grid-template-columns: 1fr; gap: 48px; }
+  .contato-form { padding: 32px 28px; }
+}
+
+@media (max-width: 700px) {
+  .wrap { padding: 0 24px; }
+  .nav { padding: 14px 24px; }
+  .nav-links, .nav-mother { display: none; }
+  .hero { padding: 64px 0 80px; }
+  .section { padding: 80px 0; }
+  .section-head { grid-template-columns: 1fr; gap: 24px; }
+  .section-num { font-size: 64px; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .changes-grid { grid-template-columns: 1fr; }
+  .numbers-grid { grid-template-columns: 1fr; }
+  .number { font-size: 36px; }
+  .dash-showcase { padding: 56px 24px; }
+  .dash-stats-row { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .calculadora-input { font-size: 48px; width: 160px; }
+  .calculadora-total-value { font-size: 40px; }
+  .journey-grid { grid-template-columns: 1fr; gap: 32px; }
+  .module-row-header { grid-template-columns: 50px 28px 1fr 24px; gap: 12px; padding: 18px 12px; }
+  .module-row-name { font-size: 18px; }
+  .module-row-body-inner { padding: 0 12px 24px 90px; }
+  .modules-group-head { grid-template-columns: 60px 1fr; gap: 16px; }
+  .modules-group-title { font-size: 28px; }
+  .bridge { padding: 24px; }
+  .bridge-text { font-size: 17px; }
+  .journey-promise { padding: 28px 24px; }
+  .journey-promise-text { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div style="display: flex; align-items: center; gap: 32px;">
+    <div class="mark sm">agente<span class="sep"></span><span class="lab">school</span></div>
+    <div class="nav-mother">
+      <span class="signal-dot"></span>
+      Um produto agente•lab
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#calculadora">Custo</a>
+    <a href="#modulos">Módulos</a>
+    <a href="#jornada">Jornada</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-ctas">
+    <a href="https://wa.me/5521987934929" target="_blank" class="btn btn-ghost">WhatsApp</a>
+    <a href="#contato" class="btn btn-emerald">Receber proposta</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">— Sistema operacional para escolas particulares</div>
+    <h1 class="hero-title">
+      A cada semana,<br>
+      uma matrícula<br>
+      <em>desaparece</em>.
+    </h1>
+    <p class="hero-sub">
+      Enquanto a secretaria apaga incêndio, a família que chegou interessada some no caminho — e ninguém percebe a tempo. <em style="color: var(--emerald); font-weight: 500;">A agente.school identifica onde sua escola está vazando — e tampa o vazamento em 30 dias.</em>
+    </p>
+    <div class="hero-ctas">
+      <a href="#calculadora" class="btn btn-emerald lg">Calcular quanto minha escola perde →</a>
+    </div>
+    <div class="hero-meta hero-meta-proof">
+      <span class="hero-proof-label">— Construído na operação real de escolas como</span>
+      <span class="hero-proof-name">Rio International School</span>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="section calculadora-section" id="calculadora">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">i.<small>O custo</small></div>
+      <div>
+        <div class="section-title">Quanto sua escola<br><em>perde</em> por mês.</div>
+        <div class="section-lead">
+          A maior parte das escolas não sabe quanto dinheiro escapa pela operação ineficiente — porque a perda nunca aparece num único lugar. Aqui está a estimativa, baseada em médias de escolas particulares brasileiras de porte médio.
+        </div>
+      </div>
+    </div>
+
+    <div class="calculadora-card">
+      <div class="calculadora-input-area">
+        <label class="calculadora-label">Quantos alunos sua escola tem hoje?</label>
+        <div class="calculadora-input-wrap">
+          <input type="number" id="calc-students" min="100" max="3000" step="50" value="400" class="calculadora-input">
+          <span class="calculadora-input-suffix">alunos</span>
+        </div>
+        <div class="calculadora-slider-wrap">
+          <input type="range" id="calc-slider" min="200" max="1500" step="50" value="400" class="calculadora-slider">
+          <div class="calculadora-slider-marks">
+            <span>200</span>
+            <span>500</span>
+            <span>1.000</span>
+            <span>1.500+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calculadora-compare">
+
+        <!-- Coluna esquerda: realidade atual (calculada) -->
+        <div class="calc-col hoje">
+          <div class="calc-col-tag">— Sua escola hoje</div>
+          <div class="calc-col-title">O que está <em>escapando</em> pela operação.</div>
+
+          <div class="calc-col-items">
+            <div class="calc-item">
+              <div class="calc-item-label">Famílias que desistem antes de matricular</div>
+              <div class="calc-item-value" id="calc-matriculas">R$ 0</div>
+              <div class="calc-item-desc">~5 famílias/mês somem por demora ou desorganização no atendimento</div>
+            </div>
+            <div class="calc-item">
+              <div class="calc-item-label">Tempo da equipe em tarefas repetitivas</div>
+              <div class="calc-item-value" id="calc-tempo">R$ 0</div>
+              <div class="calc-item-desc">~30h/mês de secretaria em declarações, mensagens, busca de documento</div>
+            </div>
+          </div>
+
+          <div class="calc-col-total">
+            <div class="calc-total-label">— Perda mensal estimada</div>
+            <div class="calc-total-value" id="calc-total">R$ 0/mês</div>
+            <div class="calc-total-anual">
+              ou <strong id="calc-total-anual">R$ 0/ano</strong> deixados na mesa
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna direita: com agente.school (qualitativo) -->
+        <div class="calc-col com">
+          <div class="calc-col-tag">— Sua escola com a agente.school</div>
+          <div class="calc-col-title">A operação <em>parou</em> de vazar.</div>
+
+          <div class="calc-col-items">
+            <div class="calc-item">
+              <div class="calc-item-label">Famílias acompanhadas até a matrícula</div>
+              <div class="calc-item-desc">Cada interessada com cadência humana — do primeiro contato à assinatura no contrato. Nenhuma família esquecida no caminho.</div>
+            </div>
+            <div class="calc-item">
+              <div class="calc-item-label">Secretaria livre do operacional</div>
+              <div class="calc-item-desc">Documentos automáticos, busca em segundos, comunicação em massa. A equipe volta a fechar matrícula em vez de apagar incêndio.</div>
+            </div>
+            <div class="calc-item">
+              <div class="calc-item-label">Direção com visão da escola inteira</div>
+              <div class="calc-item-desc">O painel com receita, matrícula, atendimentos em tempo real — sem pedir relatório, sem esperar dois dias.</div>
+            </div>
+          </div>
+
+          <div class="calc-col-stamp">
+            A operação que sustenta o crescimento da sua escola, <em>em 30 dias</em>.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="calculadora-cta">
+        <div class="calculadora-cta-text">
+          A agente.school foi desenhada exatamente pra <strong>resolver esses problemas ao mesmo tempo</strong>.
+        </div>
+        <a href="#contato-quente" class="btn btn-emerald lg">Receber proposta personalizada →</a>
+      </div>
+
+      <div class="calculadora-disclaimer">
+        Estimativa baseada em médias do setor educacional privado brasileiro. Números variam conforme o contexto da sua escola — proposta personalizada calcula sobre dados reais.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO QUENTE — form curto após calculadora -->
+<section class="contato-quente" id="contato-quente">
+  <div class="wrap">
+    <div class="contato-quente-grid">
+      <div class="contato-quente-left">
+        <div class="contato-quente-eyebrow">— Você acabou de calcular sua perda</div>
+        <h2 class="contato-quente-h">
+          Quer ver isso<br>
+          <em>parado</em> em 30 dias?
+        </h2>
+        <div class="contato-quente-sub">
+          Deixa seu WhatsApp. Em até 24h respondemos com uma proposta personalizada — módulos, cronograma, investimento calculado pra escala da sua escola.
+        </div>
+      </div>
+
+      <div>
+        <form class="contato-quente-form" id="lead-form-quente" onsubmit="handleLeadSubmitQuente(event)">
+          <div class="contato-quente-form-tag">— Receber proposta personalizada</div>
+          <div class="contato-quente-form-intro">Dois campos. <em>Dez segundos</em>.</div>
+
+          <div class="contato-field">
+            <label for="lead-name-quente">Seu nome *</label>
+            <input type="text" id="lead-name-quente" name="name" required placeholder="Ex: Paulo Nunes">
+          </div>
+
+          <div class="contato-field">
+            <label for="lead-phone-quente">WhatsApp *</label>
+            <input type="tel" id="lead-phone-quente" name="phone" required placeholder="(21) 9XXXX-XXXX">
+          </div>
+
+          <button type="submit" class="contato-submit">
+            Receber proposta →
+          </button>
+
+          <div class="contato-form-disclaimer">
+            Em até 24h respondemos pelo WhatsApp. Sem spam, sem lista.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section">
+  <div class="wrap">
+
+    <div class="section-head">
+      <div class="section-num">ii.<small>O problema</small></div>
+      <div>
+        <div class="section-title">Você <em>sabe</em> que está perdendo.<br>Só <em>não sabe</em> onde.</div>
+        <div class="section-lead">
+          A sensação está lá: a secretaria atolada, a diretoria descobrindo o problema pelo telefone, a família que sumiu sem aviso. Mas o problema não aparece num lugar só — e por isso passa anos sem solução.
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-cell bad">
+        <div class="problem-tag bad">— O que segura o crescimento</div>
+        <div class="problem-h">A escola está <em>refém</em> da própria rotina.</div>
+        <ul class="problem-list">
+          <li>Família interessada espera dias para ser atendida — e desiste</li>
+          <li>Aluno em risco de evasão é descoberto tarde demais</li>
+          <li>A secretaria atende WhatsApp em vez de fechar matrícula</li>
+          <li>A diretoria pede relatório e espera dois dias para receber</li>
+          <li>Documento sumiu — meia hora pra encontrar, ou nunca encontra</li>
+          <li>Cada nova unidade significa dobrar a equipe administrativa</li>
+        </ul>
+      </div>
+
+      <div class="problem-cell good">
+        <div class="problem-tag good">— O que destrava o crescimento</div>
+        <div class="problem-h">A escola pronta para <em>escalar</em>.</div>
+        <ul class="problem-list">
+          <li>Cada interessado é atendido em segundos, dia ou noite</li>
+          <li>Sinais de evasão chegam à coordenação cedo — a tempo de agir</li>
+          <li>A secretaria fecha matrícula em vez de apagar incêndio</li>
+          <li>A diretoria abre o painel e enxerga a escola inteira na hora</li>
+          <li>Documento certo, encontrado em segundos — ou enviado em massa</li>
+          <li>A operação está pronta para a próxima unidade — sem dobrar custo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES — accordion agrupado -->
+<section class="section" id="modulos">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">iii.<small>Os módulos</small></div>
+      <div>
+        <div class="section-title">A operação da escola,<br><em>conectada</em> de ponta a ponta.</div>
+        <div class="section-lead">
+          Cada módulo cobre uma área da operação por inteiro. A escola monta o pacote que faz sentido — sem pagar por usuário, sem pagar por módulo. A direção tem visão completa, com os fluxos críticos integrados.
+        </div>
+      </div>
+    </div>
+
+    <div class="modules-groups">
+
+      <!-- GRUPO 1 — CAPTAÇÃO E RELACIONAMENTO -->
+      <div>
+        <div class="modules-group-head">
+          <div class="modules-group-num">i.</div>
+          <div>
+            <div class="modules-group-title">Captação e <em>relacionamento</em></div>
+            <div class="modules-group-desc">Onde a família encontra a escola, onde a escola fala com a família, e onde o aluno vive o dia a dia.</div>
+          </div>
+        </div>
+
+        <div class="module-accordion">
+          <div class="module-row" data-module="01">
+            <div class="module-row-header">
+              <div class="module-row-num">— 01</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </div>
+              <div class="module-row-name"><em>CRM</em></div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Acompanha cada família interessada desde o primeiro contato até a matrícula. Formulário online, geração automática do contrato e envio para assinador online integrado. Indicadores de campanha por canal.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Captação</span>
+                  <span class="module-row-tag">Contrato</span>
+                  <span class="module-row-tag">Conversão</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-row" data-module="04">
+            <div class="module-row-header">
+              <div class="module-row-num">— 04</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="module-row-name"><em>Comunicação</em></div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Comunicados oficiais para famílias, conversas internas entre coordenação e professores, notificações com registro de leitura. Tudo num só lugar, com histórico auditável.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Comunicados</span>
+                  <span class="module-row-tag">Mensagens</span>
+                  <span class="module-row-tag">Histórico</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-row" data-module="12">
+            <div class="module-row-header">
+              <div class="module-row-num">— 12</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              </div>
+              <div class="module-row-name">Portal do <em>Aluno</em></div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">App família/aluno com boletim, comunicados, documentos, financeiro consolidado. Cada família com tudo da vida escolar do filho na palma da mão, sem ligar pra secretaria.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">App família</span>
+                  <span class="module-row-tag">Boletim</span>
+                  <span class="module-row-tag">Financeiro</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRUPO 2 — OPERAÇÃO ACADÊMICA -->
+      <div>
+        <div class="modules-group-head">
+          <div class="modules-group-num">ii.</div>
+          <div>
+            <div class="modules-group-title">Operação <em>acadêmica</em></div>
+            <div class="modules-group-desc">O ciclo completo do aluno na escola — da matrícula ao histórico, passando pelo dia a dia pedagógico e burocrático.</div>
+          </div>
+        </div>
+
+        <div class="module-accordion">
+          <div class="module-row" data-module="02">
+            <div class="module-row-header">
+              <div class="module-row-num">— 02</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div class="module-row-name">Acadêmico / <em>Pedagógico</em></div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Diário de classe, plano de aula, lançamento de notas e frequência, boletins automáticos, gestão de turmas e séries. O coração pedagógico da escola, sem papel.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Diários</span>
+                  <span class="module-row-tag">Boletins</span>
+                  <span class="module-row-tag">Histórico</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-row" data-module="06">
+            <div class="module-row-header">
+              <div class="module-row-num">— 06</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <div class="module-row-name">Secretaria e <em>Documentos</em></div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Declarações e históricos emitidos com poucos cliques. Geração automática de declaração escolar, declaração de pagamento, atestados. A secretaria livre do operacional repetitivo.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Declarações</span>
+                  <span class="module-row-tag">Histórico</span>
+                  <span class="module-row-tag">Geração automática</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-row" data-module="07">
+            <div class="module-row-header">
+              <div class="module-row-num">— 07</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+              <div class="module-row-name"><em>Matrícula</em> digital</div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Formulário de matrícula online completo, entrega digital de documentos pelas famílias, geração automática do contrato e assinatura eletrônica integrada com assinador online (ZapSign, DocuSign, Clicksign ou outro). Fim do processo em papel.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Formulário</span>
+                  <span class="module-row-tag">Assinatura integrada</span>
+                  <span class="module-row-tag">Documentos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-row" data-module="09">
+            <div class="module-row-header">
+              <div class="module-row-num">— 09</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="module-row-name">Gestão de <em>Alunos</em></div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Cada aluno com prontuário completo: dados, responsáveis, histórico, documentos, ocorrências, desempenho consolidado. Tudo o que a escola sabe sobre cada aluno em uma tela só.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Prontuário</span>
+                  <span class="module-row-tag">Histórico</span>
+                  <span class="module-row-tag">Ocorrências</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRUPO 3 — GESTÃO E ADMINISTRAÇÃO -->
+      <div>
+        <div class="modules-group-head">
+          <div class="modules-group-num">iii.</div>
+          <div>
+            <div class="modules-group-title">Gestão e <em>administração</em></div>
+            <div class="modules-group-desc">A camada que dá visão e controle pra direção: análise de dados, pessoas, patrimônio, documentos institucionais e o painel da escola inteira.</div>
+          </div>
+        </div>
+
+        <div class="module-accordion">
+          <div class="module-row" data-module="03">
+            <div class="module-row-header">
+              <div class="module-row-num">— 03</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div class="module-row-name">Gestão <em>Financeira</em></div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Camada de análise de dados sobre o financeiro da escola. Lê informações do sistema de cobrança que a escola já usa, do CRM, do acadêmico — e transforma em painéis de decisão para a diretoria. Visão consolidada de receita por turma e série, controle de bolsas e descontos, projeção de fluxo. Não emite boleto nem PIX: faz o financeiro virar visível.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Análise</span>
+                  <span class="module-row-tag">Painéis</span>
+                  <span class="module-row-tag">Integração</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-row" data-module="05">
+            <div class="module-row-header">
+              <div class="module-row-num">— 05</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </div>
+              <div class="module-row-name"><em>Dashboards</em></div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Painéis para a diretoria com números em tempo real. Análise de evasão, retenção, desempenho pedagógico, visão financeira consolidada. A escola inteira de relance.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Painéis</span>
+                  <span class="module-row-tag">Tempo real</span>
+                  <span class="module-row-tag">Decisão</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-row" data-module="08">
+            <div class="module-row-header">
+              <div class="module-row-num">— 08</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              </div>
+              <div class="module-row-name">Compras e <em>Patrimônio</em></div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Pedidos de compra com fluxo de aprovação, cotações com fornecedores, inventário do patrimônio com QR Code. A administração da escola sob controle, sem planilha paralela.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Compras</span>
+                  <span class="module-row-tag">Aprovação</span>
+                  <span class="module-row-tag">Patrimônio</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-row" data-module="10">
+            <div class="module-row-header">
+              <div class="module-row-num">— 10</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 11h-6"/></svg>
+              </div>
+              <div class="module-row-name">Gestão de <em>Time</em></div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Equipe pedagógica e administrativa num só lugar: cadastro completo, permissões claras de acesso, ponto, escalas de aulas, cargos e setores, avaliações de desempenho. Controle administrativo central.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Equipe</span>
+                  <span class="module-row-tag">Permissões</span>
+                  <span class="module-row-tag">Ponto e escalas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-row" data-module="11">
+            <div class="module-row-header">
+              <div class="module-row-num">— 11</div>
+              <div class="module-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              </div>
+              <div class="module-row-name"><em>GED</em> — Documentos</div>
+              <div class="module-row-toggle">+</div>
+            </div>
+            <div class="module-row-body">
+              <div class="module-row-body-inner">
+                <div class="module-row-desc">Arquivo digital central — contratos, atas, autorizações, RH, jurídico. Busca inteligente, controle de versão, envio para assinador online integrado quando o documento precisar de assinatura.</div>
+                <div class="module-row-tags">
+                  <span class="module-row-tag">Arquivo</span>
+                  <span class="module-row-tag">Busca</span>
+                  <span class="module-row-tag">Versão</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DASHBOARD SHOWCASE -->
+  <div class="wrap" style="margin-top: 80px;">
+    <div class="dash-showcase">
+      <div class="dash-showcase-eyebrow">— Painel da diretoria</div>
+      <div class="dash-showcase-h">A diretoria abre o painel<br>e vê <em>o que está acontecendo</em>.</div>
+      <div class="dash-showcase-sub">
+        Os módulos conversam entre si. Cada dado vem de uma única fonte. Sem pedir relatório, sem esperar dois dias.
+      </div>
+
+      <div class="dashboard">
+        <div class="dash-side">
+          <div class="dash-side-logo">
+            <div class="mark sm">agente<span class="sep"></span><span class="lab">school</span></div>
+          </div>
+          <div class="dash-side-section">— Operação</div>
+          <div class="dash-side-item active">Visão geral <span class="badge">Live</span></div>
+          <div class="dash-side-item">Acadêmico</div>
+          <div class="dash-side-item">Financeiro</div>
+          <div class="dash-side-item">Alunos</div>
+          <div class="dash-side-item">Time</div>
+          <div class="dash-side-item">CRM <span class="badge">12</span></div>
+          <div class="dash-side-item">Comunicação</div>
+          <div class="dash-side-item">Recursos</div>
+          <div class="dash-side-item">GED</div>
+          <div class="dash-side-section">— Sistema</div>
+          <div class="dash-side-item">Configurações</div>
+        </div>
+
+        <div class="dash-content">
+          <div class="dash-h">Bom dia, <em>diretoria</em>.</div>
+          <div class="dash-sub">Sua escola · 1.342 alunos · 87 professores · 5 unidades</div>
+
+          <div class="dash-stats-row">
+            <div class="dash-stat">
+              <div class="dash-stat-label">— Receita do mês</div>
+              <div class="dash-stat-num">R$ 1.4<em>M</em></div>
+              <div class="dash-stat-trend">+12% vs mês ant.</div>
+            </div>
+            <div class="dash-stat">
+              <div class="dash-stat-label">— Documentos emitidos</div>
+              <div class="dash-stat-num">128 <em>auto</em></div>
+              <div class="dash-stat-trend">−95% manual</div>
+            </div>
+            <div class="dash-stat">
+              <div class="dash-stat-label">— Novas matrículas</div>
+              <div class="dash-stat-num">42 <em>leads</em></div>
+              <div class="dash-stat-trend">+18% vs sem.</div>
+            </div>
+            <div class="dash-stat">
+              <div class="dash-stat-label">— Atendimentos</div>
+              <div class="dash-stat-num">7</div>
+              <div class="dash-stat-trend">3 automatizados</div>
+            </div>
+          </div>
+
+          <div class="dash-list-h">
+            <span>— Hoje</span>
+            <span>● Atualizado agora</span>
+          </div>
+
+          <div class="dash-row">
+            <div class="dash-avatar">JS</div>
+            <div>
+              <div class="dash-row-name">João Silva · 7º ano A</div>
+              <div class="dash-row-meta">SECRETARIA · Declaração escolar solicitada</div>
+            </div>
+            <div class="dash-row-status live">Emitida</div>
+            <div class="dash-row-amount">2 min</div>
+          </div>
+          <div class="dash-row">
+            <div class="dash-avatar iris">MR</div>
+            <div>
+              <div class="dash-row-name">Marina Rocha · 2º Médio</div>
+              <div class="dash-row-meta">ADMISSÕES · Visita à escola</div>
+            </div>
+            <div class="dash-row-status live">Hoje 14h</div>
+            <div class="dash-row-amount">—</div>
+          </div>
+          <div class="dash-row">
+            <div class="dash-avatar coral">PS</div>
+            <div>
+              <div class="dash-row-name">Pedro Souza · Inf. III</div>
+              <div class="dash-row-meta">PEDAGÓGICO · 3 faltas seguidas</div>
+            </div>
+            <div class="dash-row-status pending">Alerta</div>
+            <div class="dash-row-amount">—</div>
+          </div>
+          <div class="dash-row">
+            <div class="dash-avatar cobalt">FA</div>
+            <div>
+              <div class="dash-row-name">Fornecedor Apolo</div>
+              <div class="dash-row-meta">COMPRAS · Nota fiscal aprovada</div>
+            </div>
+            <div class="dash-row-status live">Pago</div>
+            <div class="dash-row-amount">R$ 3.412</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMAS RESOLVIDOS -->
+<section class="section dark-section" id="problemas">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">iv.<small>Como resolve</small></div>
+      <div>
+        <div class="section-title">Os problemas<br>que a gente <em>resolve</em>.</div>
+        <div class="section-lead">
+          A perda que você acabou de calcular não é uma só — são fluxos contínuos de coisas escapando pela porta, cada um com causa diferente. A agente.school foi desenhada exatamente em cima dessas causas.
+        </div>
+      </div>
+    </div>
+
+    <div class="numbers-grid">
+      <div class="number-cell">
+        <div class="number-tag">— Problema 01</div>
+        <div class="number">Famílias que somem</div>
+        <div class="number-mechanism">
+          Lead chega, secretaria atende quando pode, família espera, desiste. Cada interessado que some é uma anuidade perdida. <strong>O CRM acompanha cada família do primeiro contato à matrícula assinada</strong> — formulário online, contrato gerado automático, envio para assinador integrado.
+        </div>
+      </div>
+      <div class="number-cell">
+        <div class="number-tag">— Problema 02</div>
+        <div class="number">Operação repetitiva</div>
+        <div class="number-mechanism">
+          Declaração escolar, declaração de pagamento, busca de documento, comunicado em lote. A secretaria gasta o tempo dela em coisa que máquina faz. <strong>O sistema gera documentos com poucos cliques, busca arquivos em segundos, comunica famílias em massa.</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="numbers-footnote">
+      Resultado típico de implantação completa: a equipe recupera entre 50% e 70% das horas que hoje gasta no operacional, e o processo de matrícula passa a ter visibilidade do primeiro contato à assinatura — variando conforme estágio inicial e profundidade de adoção.
+    </div>
+  </div>
+</section>
+
+<!-- WHAT CHANGES — agora alinhado por problema -->
+<section class="section" id="resultados">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">v.<small>O que muda no dia</small></div>
+      <div>
+        <div class="section-title">A rotina da<br>escola, <em>sem</em><br>os incêndios.</div>
+        <div class="section-lead">
+          Cada problema resolvido vira mudança visível na rotina da equipe. Não é mágica — é a operação repetitiva saindo do colo da secretaria e voltando como decisão na mesa da diretoria.
+        </div>
+      </div>
+    </div>
+
+    <div class="changes-grid">
+
+      <div class="change-card">
+        <div class="change-tag">— Do problema 01</div>
+        <div class="change-title">Nenhum interessado <em>some</em> no caminho.</div>
+        <div class="change-pitch">Quem chega é atendido — e fecha matrícula.</div>
+        <div class="change-desc">
+          A família é qualificada, recebe convite para visita, contrato e lembrete dos documentos pendentes — com cadência humana, sem parecer robô. A secretaria vê o processo inteiro num painel só, e a direção sabe onde ele emperra. A escola fecha mais matrículas com a mesma equipe.
+        </div>
+        <div class="change-stats">
+          <div class="change-stat"><strong>+34%</strong> de matrículas fechadas</div>
+          <div class="change-stat"><strong>0</strong> família sem follow-up</div>
+        </div>
+      </div>
+
+      <div class="change-card">
+        <div class="change-tag">— Do problema 02</div>
+        <div class="change-title">Secretaria <em>livre</em> do operacional.</div>
+        <div class="change-pitch">Documento certo, encontrado em segundos.</div>
+        <div class="change-desc">
+          Declaração escolar, declaração de pagamento, contrato, ata: tudo organizado e pesquisável pelo nome do aluno, da turma ou da data. Comunicado em lote sai num clique, com registro de leitura. A secretaria sai do reativo e volta a fechar matrícula, atender bem, cuidar do que precisa de gente.
+        </div>
+        <div class="change-stats">
+          <div class="change-stat"><strong>−72%</strong> de fila na secretaria</div>
+          <div class="change-stat"><strong>−95%</strong> do tempo procurando documento</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- JORNADA -->
+<section class="section" id="jornada">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">vi.<small>Jornada</small></div>
+      <div>
+        <div class="section-title">Em <em>30 dias</em>,<br>a operação roda.</div>
+        <div class="section-lead">
+          Cronograma de implantação semana a semana. Ao final do mês 1, a escola já opera o básico no novo sistema. O resto é evolução contínua. Processo testado em escolas de 200 a 800 alunos — não é promessa de proposta, é o que praticamos em campo.
+        </div>
+      </div>
+    </div>
+
+    <div class="journey-grid">
+      <div class="journey-card">
+        <div class="journey-card-num">i.</div>
+        <div class="journey-card-tag">— Semana 1</div>
+        <div class="journey-card-h"><em>Migração</em></div>
+        <div class="journey-card-body">
+          Diagnóstico técnico, mapeamento dos fluxos atuais, importação dos dados (alunos, turmas, financeiro, documentos). Configuração dos módulos contratados.
+        </div>
+      </div>
+
+      <div class="journey-card">
+        <div class="journey-card-num">ii.</div>
+        <div class="journey-card-tag">— Semana 2</div>
+        <div class="journey-card-h"><em>Setup</em> e testes</div>
+        <div class="journey-card-body">
+          Sistema configurado, integrações com ferramentas existentes da escola conectadas, testes em paralelo à operação atual. Validação dos dados importados.
+        </div>
+      </div>
+
+      <div class="journey-card">
+        <div class="journey-card-num">iii.</div>
+        <div class="journey-card-tag">— Semanas 3–4</div>
+        <div class="journey-card-h"><em>Operação</em></div>
+        <div class="journey-card-body">
+          Equipe treinada, escola já operando o básico no sistema. Diretoria acessando dashboards. Ajustes baseados em uso real. Sustentação ativa.
+        </div>
+      </div>
+
+      <div class="journey-card">
+        <div class="journey-card-num">iv.</div>
+        <div class="journey-card-tag">— A partir do dia 31</div>
+        <div class="journey-card-h"><em>Sustentação</em> contínua</div>
+        <div class="journey-card-body">
+          Otimizações mensais conforme uso real, novos módulos quando fizer sentido, evolução acompanhada pela casa. Suporte e relacionamento contínuo.
+        </div>
+      </div>
+    </div>
+
+    <!-- Promessa de ROI -->
+    <div class="journey-promise">
+      <div class="journey-promise-tag">— No fim do mês 1</div>
+      <div class="journey-promise-text">
+        A diretoria entra no painel e vê <em>os fluxos virando</em>. Matrículas avançando até a assinatura, secretaria com agenda livre, documentos saindo automáticos. Não é projeção — é o que está acontecendo na sua escola, em tempo real.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ — objeções de compra -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">vii.<small>Perguntas</small></div>
+      <div>
+        <div class="section-title">As perguntas que <em>todo mantenedor</em> faz.</div>
+        <div class="section-lead">
+          Antes de adotar um sistema novo, mantenedor sério faz a pergunta difícil. Aqui estão as que mais ouvimos — respondidas sem rodeio. Se a sua não estiver aqui, fala com a gente direto no WhatsApp.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-num">i.</div>
+        <div>
+          <div class="faq-q"><em>E se não der certo</em> na minha escola?</div>
+          <div class="faq-a">O contrato é anual e renovável. Se ao fim do primeiro ano você sentir que a agente.school não entregou o combinado, sai e leva todos os seus dados — em formato aberto, sem cláusula de retenção, sem multa de saída. A gente prefere perder cliente do que prender cliente. Mas a verdade é que esse cenário é raro: o cronograma de 30 dias é desenhado pra que, antes do fim do mês 1, você já consiga enxergar o que mudou na operação.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-num">ii.</div>
+        <div>
+          <div class="faq-q">Quanto tempo dura o <em>contrato</em>?</div>
+          <div class="faq-a">12 meses, com renovação automática anual e reajuste atrelado ao IPCA — sem surpresas no aniversário do contrato. Sem fidelidade longa, sem cláusula de exclusividade, sem letra miúda. Se quiser sair na renovação, basta avisar com 60 dias de antecedência.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-num">iii.</div>
+        <div>
+          <div class="faq-q">E se eu quiser <em>trocar de sistema</em> depois?</div>
+          <div class="faq-a">Exportamos tudo: cadastro de alunos, documentos, histórico, contratos, financeiro. Em formatos abertos (CSV, JSON, PDF), sem retenção dos seus dados. Os módulos foram desenhados pra integrar com sistemas externos — então você nunca fica preso a um fornecedor único. A escola é dona dos dados da escola, sempre.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-num">iv.</div>
+        <div>
+          <div class="faq-q">Por que devo <em>confiar</em> em vocês?</div>
+          <div class="faq-a">Porque o produto foi construído na operação real de escolas como o Rio International School — não numa apresentação de slide. Porque a gente não vende sistema isolado: vende sustentação contínua, com otimizações mensais acompanhadas pelo time. E porque o posicionamento é radicalmente honesto: dizemos antes de assinar o que entregamos e o que não entregamos. A escola sabe o escopo antes do contrato — sem promessa frustrada depois.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-num">v.</div>
+        <div>
+          <div class="faq-q">Como funciona a <em>matrícula digital</em> com assinatura?</div>
+          <div class="faq-a">A família preenche o formulário online, anexa os documentos digitalmente e o contrato é gerado automaticamente com os dados informados. A assinatura acontece pelo assinador online da sua preferência (ZapSign, DocuSign, Clicksign ou outro) — integramos com o que você já usa ou recomendamos uma opção. Fim do "imprime, leva, assina, escaneia, devolve".</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO — form 3 campos -->
+<section class="cta-big" id="contato">
+  <div class="wrap">
+    <div class="contato-grid">
+      <div class="contato-left">
+        <div class="cta-big-eyebrow">— Próximo passo</div>
+        <h2 class="cta-big-h">
+          A operação da<br>
+          sua escola<br>
+          em <em>30 dias</em>.
+        </h2>
+        <div class="cta-big-sub">
+          Conta o básico sobre a sua instituição. Em até 24h respondemos com uma proposta personalizada — módulos selecionados, investimento calculado pra escala da sua escola, cronograma de implantação. Sem compromisso, sem pressão.
+        </div>
+
+        <div class="contato-whatsapp">
+          <div class="contato-whatsapp-label">— Prefere conversar agora?</div>
+          <a href="https://wa.me/5521987934929" class="contato-whatsapp-link" target="_blank">
+            <span class="wa-icon">●</span>
+            WhatsApp direto: <strong>(21) 98793-4929</strong>
+          </a>
+          <div class="contato-whatsapp-meta">Thalles Aguiar · agente.lab · resposta em horário comercial</div>
+        </div>
+      </div>
+
+      <div class="contato-right">
+        <form class="contato-form" id="lead-form" onsubmit="handleLeadSubmit(event)">
+          <div class="contato-form-tag">— Receber proposta personalizada</div>
+          <div class="contato-form-intro">Três campos. <em>Vinte segundos</em>.</div>
+
+          <div class="contato-field">
+            <label for="lead-name">Seu nome *</label>
+            <input type="text" id="lead-name" name="name" required placeholder="Ex: Paulo Nunes">
+          </div>
+
+          <div class="contato-field">
+            <label for="lead-school">Nome da escola *</label>
+            <input type="text" id="lead-school" name="school" required placeholder="Ex: Seiva Pura">
+          </div>
+
+          <div class="contato-field">
+            <label for="lead-phone">WhatsApp *</label>
+            <input type="tel" id="lead-phone" name="phone" required placeholder="(21) 9XXXX-XXXX">
+          </div>
+
+          <button type="submit" class="contato-submit">
+            Receber proposta →
+          </button>
+
+          <div class="contato-form-disclaimer">
+            Em até 24h respondemos pelo WhatsApp com uma proposta personalizada. Seus dados ficam só com a gente — sem spam, sem lista, sem terceirização.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="mark md">agente<span class="sep"></span><span class="lab">school</span></div>
+        <p>Sistema completo para escolas, cursos e faculdades. Um produto da casa <a href="#" style="color: var(--signal); text-decoration: none;">agente•lab</a>.</p>
+      </div>
+
+      <div>
+        <div class="footer-col-h">— O sistema</div>
+        <ul class="footer-col-list">
+          <li><a href="#modulos">Módulos</a></li>
+          <li><a href="#problemas">Como resolve</a></li>
+          <li><a href="#jornada">Jornada</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-h">— Para você</div>
+        <ul class="footer-col-list">
+          <li><a href="#calculadora">Calcular perda</a></li>
+          <li><a href="#contato">Receber proposta</a></li>
+          <li><a href="https://wa.me/5521987934929" target="_blank">WhatsApp direto</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-h">— A casa agente•lab</div>
+        <ul class="footer-col-list">
+          <li><a href="#">agente.lab <span class="footer-family-tag live">live</span></a></li>
+          <li><a href="#">agente.school <span class="footer-family-tag live">você está aqui</span></a></li>
+          <li><a href="#">agente.crm <span class="footer-family-tag">em breve</span></a></li>
+          <li><a href="#">agente.mkt <span class="footer-family-tag">em breve</span></a></li>
+          <li><a href="#">agente.contábil <span class="footer-family-tag">em breve</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <a href="#" class="footer-mother-link">
+        <span class="mom-dot"></span>
+        Um produto agente•lab
+      </a>
+      <span>© 2026 · Um produto agente•lab</span>
+      <span>São Paulo · Rio de Janeiro</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============== CALCULADORA DE PERDA ==============
+function formatBRL(value) {
+  return 'R$ ' + Math.round(value).toLocaleString('pt-BR');
+}
+
+function updateCalculadora() {
+  const input = document.getElementById('calc-students');
+  const slider = document.getElementById('calc-slider');
+  let students = parseInt(input.value) || 400;
+
+  if (students < 100) students = 100;
+  if (students > 3000) students = 3000;
+
+  if (students >= 200 && students <= 1500) {
+    slider.value = students;
+  }
+
+  const mensalidadeMedia = 1800;
+
+  // 1. Matrículas perdidas: 1 família por 80 alunos
+  const matriculasPerdidas = Math.round(students / 80);
+  const matriculasPerda = matriculasPerdidas * mensalidadeMedia;
+
+  // 2. Tempo da equipe em tarefas repetitivas: 1h por 13 alunos × R$ 35/h
+  const horasMes = Math.round(students / 13);
+  const tempoCusto = horasMes * 35;
+
+  const total = matriculasPerda + tempoCusto;
+  const totalAnual = total * 12;
+
+  document.getElementById('calc-matriculas').textContent = formatBRL(matriculasPerda);
+  document.getElementById('calc-tempo').textContent = formatBRL(tempoCusto);
+  document.getElementById('calc-total').textContent = formatBRL(total) + '/mês';
+  document.getElementById('calc-total-anual').textContent = formatBRL(totalAnual);
+}
+
+document.getElementById('calc-students').addEventListener('input', updateCalculadora);
+document.getElementById('calc-slider').addEventListener('input', (e) => {
+  document.getElementById('calc-students').value = e.target.value;
+  updateCalculadora();
+});
+
+updateCalculadora();
+
+// ============== ACCORDION DE MÓDULOS ==============
+document.querySelectorAll('.module-row').forEach(row => {
+  row.querySelector('.module-row-header').addEventListener('click', () => {
+    row.classList.toggle('open');
+  });
+});
+
+// ============== LEAD FORM HANDLER (form quente — 2 campos) ==============
+function handleLeadSubmitQuente(e) {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('.contato-submit');
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  const message = encodeURIComponent(
+    `Olá Thalles! Vim pela landing da agente.school e quero receber uma proposta.\n\n` +
+    `*Nome:* ${data.name}\n` +
+    `*WhatsApp:* ${data.phone}\n` +
+    `\nAcabei de calcular minha perda na calculadora.`
+  );
+
+  submitBtn.textContent = 'Enviando...';
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    window.open(`https://wa.me/5521987934929?text=${message}`, '_blank');
+    submitBtn.textContent = '✓ Mensagem enviada — abra o WhatsApp';
+    submitBtn.classList.add('success');
+    submitBtn.disabled = true;
+  }, 600);
+}
+
+// ============== LEAD FORM HANDLER (form completo — 3 campos) ==============
+function handleLeadSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('.contato-submit');
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  const message = encodeURIComponent(
+    `Olá Thalles! Gostaria de receber uma proposta da agente.school.\n\n` +
+    `*Nome:* ${data.name}\n` +
+    `*Escola:* ${data.school}\n` +
+    `*WhatsApp:* ${data.phone}\n` +
+    `\nVim pelo site agentelab.com.br`
+  );
+
+  submitBtn.textContent = 'Enviando...';
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    window.open(`https://wa.me/5521987934929?text=${message}`, '_blank');
+    submitBtn.textContent = '✓ Mensagem enviada — abra o WhatsApp';
+    submitBtn.classList.add('success');
+    submitBtn.disabled = true;
+  }, 600);
+}
+</script>
+
+</body>
+</html>
