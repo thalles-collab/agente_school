@@ -38,6 +38,28 @@ usa o padrão `DEFAULT_PHOTOS_DIR` definido no script.
 - `ROOM_HINTS`: ajuste fino por sala (ex.: sala de reunião, área colaborativa).
 - `ROOMS`: lista de salas a processar.
 
+## Vídeo-tour (office_tour.py)
+
+Depois de gerar as imagens com staging, `office_tour.py` cria um **vídeo-tour**
+do andar: para cada `salaX_staged.jpg` usa o modelo **Veo** (mesma API/chave) em
+modo image-to-video, gerando um clipe curto com movimento de câmera que apenas
+"passeia" pelo ambiente (sem alterar a arquitetura), e concatena tudo num único
+`office_tour.mp4`.
+
+```bash
+export GEMINI_API_KEY="sua-chave"
+python3 office_tour.py /caminho/das/fotos
+```
+
+- Modelo configurável via `VEO_MODEL` (padrão `veo-3.0-generate-001`; o Veo 3
+  também gera áudio). Alternativas: `veo-3.0-fast-generate-001`, `veo-2.0-generate-001`.
+- A geração do Veo é assíncrona (o script faz polling) e cada clipe tem poucos
+  segundos (5–8s). Saídas: `salaX_clip.mp4` + o tour final `office_tour.mp4`.
+- A concatenação usa o ffmpeg do pacote `imageio-ffmpeg` (não precisa instalar
+  ffmpeg no sistema). Se o ffmpeg faltar, os clipes individuais ainda são gerados.
+- `person_generation` no Veo pode ter restrições por região/política — ajuste no
+  script se a API recusar gerar pessoas.
+
 ## Nota sobre custo
 
 A estimativa usa as constantes `PRICE_PER_1M_*` no script (preço de referência da
