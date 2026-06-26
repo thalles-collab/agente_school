@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*_staged.jpg
+*_clip.mp4
+office_tour.mp4
+*.concat.txt
+fotos/
