@@ -32,32 +32,28 @@ import glob
 import time
 import subprocess
 
-DEFAULT_PHOTOS_DIR = "/caminho/das/fotos"
+DEFAULT_PHOTOS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fotos")
 
 # Modelo de vídeo. Alternativas comuns: "veo-3.0-fast-generate-001",
 # "veo-2.0-generate-001". Veo 3 também gera áudio.
 VIDEO_MODEL = os.environ.get("VEO_MODEL", "veo-3.0-generate-001")
 
-ROOMS = ["sala5", "sala6", "sala8"]
+# Movimento de câmera padrão. Sempre "passeia" pelo ambiente existente.
+DEFAULT_MOTION = (
+    "Slow cinematic dolly/pan through this modern corporate office space, smooth "
+    "steady gimbal motion, gently revealing the furniture and the people working."
+)
 
-# Movimento de câmera por sala. Sempre "passeia" pelo ambiente existente,
-# sem inventar nada novo.
-ROOM_MOTION = {
-    "sala5": (
-        "Slow cinematic dolly forward through this modern open collaborative "
-        "office space, smooth steady gimbal motion, gentle reveal of the desks "
-        "and the people working."
-    ),
-    "sala6": (
-        "Slow cinematic pan across this modern corporate meeting room, smooth "
-        "steady gimbal motion, revealing the conference table and people in "
-        "discussion."
-    ),
-    "sala8": (
-        "Slow cinematic dolly forward through this modern focused work area, "
-        "smooth steady gimbal motion, gentle reveal of the desks, monitors and "
-        "people typing."
-    ),
+# Ajuste fino do movimento por tipo de sala (palavra-chave no nome do arquivo).
+MOTION_HINTS = {
+    "boardroom": "Slow cinematic pan across this executive boardroom, revealing "
+                 "the meeting table and the executives in a meeting.",
+    "meeting": "Slow cinematic pan across this meeting room, revealing the "
+               "conference table and people in discussion.",
+    "open": "Slow cinematic dolly forward through this open-plan workspace, "
+            "revealing the desks and people working.",
+    "private": "Slow cinematic dolly into this private office, revealing the "
+               "desk and the person working.",
 }
 
 MOTION_SUFFIX = (
@@ -65,21 +61,31 @@ MOTION_SUFFIX = (
     "windows unchanged. Photorealistic, consistent lighting. No text overlays."
 )
 
+
+def motion_for(stem):
+    low = stem.lower()
+    for kw, m in MOTION_HINTS.items():
+        if kw in low:
+            return m
+    return DEFAULT_MOTION
+
+
+def discover_staged(photos_dir):
+    """Prefere os *_staged.jpg; se não houver nenhum, usa as imagens originais."""
+    staged = sorted(glob.glob(os.path.join(photos_dir, "*_staged.jpg")))
+    if staged:
+        return staged
+    out = []
+    for ext in ("jpg", "jpeg", "png", "webp"):
+        for p in glob.glob(os.path.join(photos_dir, f"*.{ext}")):
+            low = os.path.basename(p).lower()
+            if "_clip" in low:
+                continue
+            out.append(p)
+    return sorted(set(out))
+
 POLL_SECONDS = 10
 POLL_TIMEOUT = 600  # 10 min por clipe
-
-
-def find_source_image(photos_dir, room):
-    """Prefere a imagem com staging (salaX_staged.*); cai para a original."""
-    for pat in (f"{room}_staged.jpg", f"{room}_staged.*"):
-        hits = glob.glob(os.path.join(photos_dir, pat))
-        if hits:
-            return hits[0]
-    for ext in ("jpg", "jpeg", "png", "webp"):
-        hits = glob.glob(os.path.join(photos_dir, f"{room}.{ext}"))
-        if hits:
-            return hits[0]
-    return None
 
 
 def ffmpeg_exe():
@@ -188,21 +194,22 @@ def main():
         print("AVISO: ffmpeg indisponível — os clipes serão gerados, mas não "
               "serão concatenados no tour final.", file=sys.stderr)
 
+    sources = discover_staged(photos_dir)
+    if not sources:
+        print(f"Nenhuma imagem encontrada em {photos_dir} (rode antes o "
+              f"virtual_staging.py para gerar os *_staged.jpg).", file=sys.stderr)
+        sys.exit(1)
+
     client = genai.Client(api_key=api_key)
-    print(f"Diretório: {photos_dir}\nModelo de vídeo: {VIDEO_MODEL}\n")
+    print(f"Diretório: {photos_dir}\nModelo de vídeo: {VIDEO_MODEL}\n"
+          f"Clipes a gerar: {len(sources)}\n")
 
     clips, fail = [], 0
-    for room in ROOMS:
-        print(f"== {room} ==")
-        src = find_source_image(photos_dir, room)
-        if not src:
-            print(f"    [pulado] imagem de origem não encontrada (rode antes o "
-                  f"virtual_staging.py para gerar {room}_staged.jpg).")
-            fail += 1
-            continue
-
-        out_clip = os.path.join(photos_dir, f"{room}_clip.mp4")
-        prompt = ROOM_MOTION.get(room, "Slow cinematic camera move through the room.") + MOTION_SUFFIX
+    for src in sources:
+        stem = os.path.splitext(os.path.basename(src))[0].replace("_staged", "")
+        print(f"== {stem} ==")
+        out_clip = os.path.join(photos_dir, f"{stem}_clip.mp4")
+        prompt = motion_for(stem) + MOTION_SUFFIX
         print(f"    [origem] {src}")
         try:
             generate_clip(client, types, src, out_clip, prompt)
