@@ -71,10 +71,12 @@ body::before {
   background-color: var(--emerald); margin: 0 0.18em; flex-shrink: 0; align-self: baseline;
 }
 .mark .lab { font-weight: 400; color: var(--gray-deep); }
+.mark.lg { font-size: 56px; }
 .mark.md { font-size: 32px; }
 .mark.sm { font-size: 18px; letter-spacing: -0.045em; }
 .dark-section .mark { color: var(--paper); }
 .dark-section .mark .lab { color: rgba(244,242,236,0.55); }
+.cover .mark .lab, .cover-brand .mark .lab { color: rgba(244,242,236,0.6); }
 
 /* NAV */
 .nav {
@@ -100,33 +102,49 @@ body::before {
 .btn-outline:hover { background: var(--ink); color: var(--paper); }
 .btn.lg { padding: 14px 24px; font-size: 14px; }
 
-/* HERO */
-.hero { padding: 84px 0 96px; position: relative; border-bottom: 1px solid var(--ink); overflow: hidden; }
-.hero-eyebrow {
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--emerald); margin-bottom: 32px; display: inline-flex; align-items: center; gap: 14px;
+/* ============ CAPA (COVER) — honesta ============ */
+.cover {
+  background: var(--ink); color: var(--paper);
+  min-height: 100vh; display: flex; flex-direction: column;
+  padding: 40px 0; position: relative; overflow: hidden;
 }
-.hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 32px; height: 1px; background: var(--emerald); }
-.hero-title {
-  font-family: var(--serif); font-size: clamp(48px, 7vw, 104px); font-weight: 300;
-  letter-spacing: -0.05em; line-height: 0.94; font-variation-settings: "opsz" 144, "SOFT" 50; max-width: 1000px;
+.cover::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background-image: radial-gradient(circle at 1px 1px, rgba(244,242,236,0.05) 1px, transparent 0);
+  background-size: 26px 26px;
 }
-.hero-title em {
-  font-style: italic; font-weight: 400;
-  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; color: var(--emerald);
+.cover .wrap { display: flex; flex-direction: column; flex: 1; z-index: 2; }
+.cover-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 48px; }
+.cover-top .nav-tag { color: rgba(244,242,236,0.55); }
+.cover-mid { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 24px 0; }
+.cover-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--emerald); margin-bottom: 36px; display: inline-flex; align-items: center; gap: 14px;
 }
-.hero-sub {
-  font-family: var(--serif); font-style: italic; font-size: 22px; font-weight: 300;
-  color: var(--gray-deep); margin-top: 32px; max-width: 680px; line-height: 1.45;
-  font-variation-settings: "opsz" 144, "SOFT" 50;
+.cover-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--emerald); }
+.cover-title {
+  font-family: var(--serif); font-size: clamp(46px, 6.6vw, 100px); font-weight: 300;
+  letter-spacing: -0.05em; line-height: 0.96; font-variation-settings: "opsz" 144, "SOFT" 50; max-width: 15ch;
 }
-.hero-meta {
-  display: flex; gap: 40px; margin-top: 56px; align-items: flex-start;
-  flex-wrap: wrap; padding-top: 32px; border-top: 1px solid var(--rule);
+.cover-title em {
+  font-style: italic; font-weight: 400; color: var(--emerald);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
 }
-.hero-meta-item { display: flex; flex-direction: column; gap: 6px; }
-.hero-meta-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-deep); }
-.hero-meta-val { font-family: var(--serif); font-style: italic; font-size: 20px; font-weight: 400; color: var(--ink); font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
+.cover-honest {
+  margin-top: 40px; max-width: 620px; border-left: 2px solid var(--emerald);
+  padding: 4px 0 4px 28px; display: flex; flex-direction: column; gap: 14px;
+}
+.cover-honest p {
+  font-family: var(--serif); font-style: italic; font-size: 20px; font-weight: 300;
+  color: rgba(244,242,236,0.82); line-height: 1.5; font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.cover-honest p strong { font-weight: 500; color: var(--paper); font-style: italic; }
+.cover-bottom {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+  padding-top: 40px; border-top: 1px solid rgba(244,242,236,0.18);
+}
+.cover-meta-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,242,236,0.5); margin-bottom: 8px; }
+.cover-meta-val { font-family: var(--serif); font-style: italic; font-size: 19px; font-weight: 400; color: var(--paper); font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; line-height: 1.2; }
 
 /* SECTION */
 .section { padding: 110px 0; border-bottom: 1px solid var(--ink); position: relative; }
@@ -175,6 +193,17 @@ body::before {
 .stat-label { font-family: var(--sans); font-size: 13px; color: var(--gray-deep); margin-top: 12px; line-height: 1.5; }
 .dark-section .stat-label { color: rgba(244,242,236,0.6); }
 
+/* TIMELINE — o que fizemos */
+.timeline { display: flex; flex-direction: column; gap: 2px; }
+.tl-row { display: grid; grid-template-columns: 160px 1fr auto; gap: 32px; align-items: center; border: 1px solid var(--ink); background: var(--paper); padding: 30px 40px; }
+.tl-name { font-family: var(--serif); font-size: 26px; font-weight: 400; letter-spacing: -0.02em; font-variation-settings: "opsz" 144, "SOFT" 50; }
+.tl-name .mk-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background: var(--emerald); margin: 0 2px; vertical-align: middle; }
+.tl-desc { font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--gray-deep); max-width: 620px; }
+.tl-badge { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 10px; border-radius: 4px; white-space: nowrap; }
+.tl-badge.live { background: rgba(21,184,134,0.15); color: var(--emerald-deep); border: 1px solid var(--emerald); }
+.tl-badge.now { background: var(--ink); color: var(--paper); }
+.tl-badge.soon { background: transparent; color: var(--gray); border: 1px solid var(--rule); }
+
 /* PROBLEM / SOLUTION */
 .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 .problem-cell { background: var(--paper); border: 1px solid var(--ink); padding: 48px 44px; display: flex; flex-direction: column; gap: 20px; min-height: 340px; }
@@ -208,7 +237,7 @@ body::before {
 .mod-item-tag { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emerald-deep); border: 1px solid var(--emerald); border-radius: 3px; padding: 2px 6px; margin-top: 8px; }
 
 /* FLOW / JOURNEY */
-.flow { display: flex; flex-direction: column; gap: 2px; counter-reset: step; }
+.flow { display: flex; flex-direction: column; gap: 2px; }
 .flow-step { display: grid; grid-template-columns: 90px 1fr; gap: 32px; border: 1px solid var(--ink); background: var(--paper); padding: 32px 40px; align-items: center; }
 .flow-step-num { font-family: var(--serif); font-style: italic; font-size: 44px; font-weight: 300; color: var(--emerald); font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; line-height: 1; }
 .flow-step-body h4 { font-family: var(--serif); font-size: 24px; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 6px; font-variation-settings: "opsz" 144, "SOFT" 50; }
@@ -233,9 +262,18 @@ body::before {
 .price-card.highlight .price-list li { color: rgba(244,242,236,0.8); }
 .price-list li::before { content: ''; position: absolute; left: 0; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--emerald); }
 
+/* FOUNDER STRIP */
+.founder { border: 1px solid var(--emerald); background: var(--emerald-soft); padding: 40px 44px; margin-top: 2px; display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: center; }
+.founder-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--emerald-deep); }
+.founder-h { font-family: var(--serif); font-size: 28px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; font-variation-settings: "opsz" 144, "SOFT" 50; margin-top: 10px; }
+.founder-h em { font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; color: var(--emerald-deep); }
+.founder-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.founder-list li { font-family: var(--sans); font-size: 15px; line-height: 1.5; color: var(--ink-soft); padding-left: 26px; position: relative; }
+.founder-list li::before { content: '→'; position: absolute; left: 0; top: 0; color: var(--emerald-deep); font-weight: 700; }
+
 /* INCLUDED STRIP */
 .included { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 2px; }
-.included-cell { border: 1px solid var(--ink); padding: 32px 28px; background: var(--emerald-soft); }
+.included-cell { border: 1px solid var(--ink); padding: 32px 28px; background: var(--paper); }
 .included-cell .ic-label { font-family: var(--serif); font-style: italic; font-size: 22px; font-weight: 400; letter-spacing: -0.02em; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
 .included-cell .ic-desc { font-family: var(--sans); font-size: 13px; color: var(--gray-deep); margin-top: 8px; line-height: 1.5; }
 
@@ -245,6 +283,39 @@ body::before {
 .note-icon { font-family: var(--serif); font-style: italic; font-size: 28px; color: var(--emerald); line-height: 1; }
 .note-body h4 { font-family: var(--sans); font-size: 15px; font-weight: 600; margin-bottom: 4px; }
 .note-body p { font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--gray-deep); }
+
+/* RATEIO — por condômino */
+.rateio-head { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 2px; }
+.rateio-hero { border: 1px solid var(--ink); background: var(--ink); color: var(--paper); padding: 44px 40px; grid-column: span 1; display: flex; flex-direction: column; justify-content: center; }
+.rateio-hero .rh-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--emerald); margin-bottom: 14px; }
+.rateio-hero .rh-num { font-family: var(--serif); font-size: 66px; font-weight: 300; line-height: 0.95; letter-spacing: -0.03em; font-variation-settings: "opsz" 144, "SOFT" 50; }
+.rateio-hero .rh-num small { font-size: 26px; color: rgba(244,242,236,0.6); }
+.rateio-hero .rh-sub { font-family: var(--sans); font-size: 13px; color: rgba(244,242,236,0.65); margin-top: 12px; line-height: 1.5; }
+.rateio-side { border: 1px solid var(--ink); background: var(--paper); padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; }
+.rateio-side .rh-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-deep); margin-bottom: 14px; }
+.rateio-side .rh-num { font-family: var(--serif); font-size: 52px; font-weight: 300; line-height: 0.95; letter-spacing: -0.03em; color: var(--emerald-deep); font-variation-settings: "opsz" 144, "SOFT" 50; }
+.rateio-side .rh-num small { font-size: 22px; color: var(--gray); }
+.rateio-side .rh-sub { font-family: var(--sans); font-size: 13px; color: var(--gray-deep); margin-top: 12px; line-height: 1.5; }
+
+.rateio-table-wrap { overflow-x: auto; border: 1px solid var(--ink); margin-top: 40px; }
+.rateio-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.rateio-table th, .rateio-table td { text-align: right; padding: 13px 20px; font-family: var(--mono); font-size: 12.5px; border-bottom: 1px solid var(--rule); }
+.rateio-table th { font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-deep); background: var(--paper-deep); font-weight: 500; border-bottom: 1px solid var(--ink); }
+.rateio-table td:first-child, .rateio-table th:first-child { text-align: left; color: var(--ink); }
+.rateio-table tbody tr:last-child td { border-bottom: none; }
+.rateio-table .apto-col { color: var(--emerald-deep); font-weight: 500; }
+.rateio-table tfoot td { background: var(--ink); color: var(--paper); font-weight: 500; border-bottom: none; font-size: 13px; }
+.rateio-table tfoot td .apto-col, .rateio-table tfoot .apto-col { color: var(--emerald); }
+.rateio-caption { font-family: var(--sans); font-size: 13px; color: var(--gray-deep); margin-top: 16px; line-height: 1.55; max-width: 720px; }
+.rateio-caption strong { color: var(--ink); font-weight: 600; }
+
+/* BENEFITS */
+.ben-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.ben-cell { border: 1px solid var(--ink); background: var(--paper); padding: 38px 34px; display: flex; flex-direction: column; gap: 14px; min-height: 220px; }
+.ben-cell .ben-icon { font-family: var(--serif); font-style: italic; font-size: 40px; font-weight: 300; color: var(--emerald); line-height: 1; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
+.ben-cell h4 { font-family: var(--serif); font-size: 23px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; font-variation-settings: "opsz" 144, "SOFT" 50; }
+.ben-cell h4 em { font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
+.ben-cell p { font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--gray-deep); margin-top: auto; }
 
 /* CTA */
 .cta-final { text-align: center; }
@@ -276,8 +347,12 @@ body::before {
   .section-head { grid-template-columns: 1fr; gap: 20px; margin-bottom: 44px; }
   .section-num { font-size: 64px; }
   .stat-row, .problem-grid, .mod-items, .price-grid, .included { grid-template-columns: 1fr; }
+  .rateio-head { grid-template-columns: 1fr; }
+  .ben-grid { grid-template-columns: 1fr; }
   .flow-step { grid-template-columns: 1fr; gap: 12px; }
-  .hero-meta { gap: 28px; }
+  .tl-row { grid-template-columns: 1fr; gap: 12px; }
+  .cover-bottom { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .founder { grid-template-columns: 1fr; gap: 20px; }
   .footer-top { grid-template-columns: 1fr; gap: 32px; }
   .cta-signature { flex-direction: column; }
 }
@@ -285,27 +360,40 @@ body::before {
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="mark sm">agente<span class="sep"></span><span class="lab">lab</span></div>
-  <div class="nav-tag"><span class="signal-dot"></span> Proposta comercial · Confidencial</div>
-  <a href="https://wa.me/5521987934929" target="_blank" class="btn btn-emerald">Falar no WhatsApp</a>
-</nav>
-
-<!-- HERO -->
-<header class="hero">
+<!-- ============ CAPA HONESTA ============ -->
+<header class="cover">
   <div class="wrap">
-    <div class="hero-eyebrow">Proposta de micro SaaS sob medida</div>
-    <h1 class="hero-title">Uma portaria que <em>avisa sozinha</em> quando a encomenda chega.</h1>
-    <p class="hero-sub">Sistema exclusivo para o Condomínio Viverde Residencial: controle de encomendas com foto, aviso automático por WhatsApp oficial e comunicação direta com os moradores — tudo dentro do ambiente seguro da agente•lab.</p>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><span class="hero-meta-label">Preparado para</span><span class="hero-meta-val">Condomínio Viverde Residencial</span></div>
-      <div class="hero-meta-item"><span class="hero-meta-label">Aos cuidados de</span><span class="hero-meta-val">Síndico Marcio Dantas</span></div>
-      <div class="hero-meta-item"><span class="hero-meta-label">Data</span><span class="hero-meta-val">30 de julho de 2026</span></div>
-      <div class="hero-meta-item"><span class="hero-meta-label">Validade</span><span class="hero-meta-val">30 dias</span></div>
+    <div class="cover-top">
+      <div class="mark md">agente<span class="sep"></span><span class="lab">lab</span></div>
+      <div class="nav-tag"><span class="signal-dot"></span> Proposta · Confidencial</div>
+    </div>
+
+    <div class="cover-mid">
+      <div class="cover-eyebrow">A verdade, primeiro</div>
+      <h1 class="cover-title">O Viverde não vai comprar um sistema. Vai <em>fundar um</em>.</h1>
+
+      <div class="cover-honest">
+        <p>Sendo honestos: isto <strong>não é</strong> um software de prateleira já pronto na gôndola.</p>
+        <p>É o <strong>agente•condo</strong> — um produto de gestão de condomínios que a agente•lab está construindo — e o Viverde é o <strong>primeiro condomínio a colocá-lo no ar</strong>.</p>
+        <p>Isso muda tudo a seu favor: preço de fundador, atenção total e voz no que é construído. Você não é mais um cliente numa fila — você é o começo.</p>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <div><div class="cover-meta-label">Preparado para</div><div class="cover-meta-val">Condomínio Viverde Residencial</div></div>
+      <div><div class="cover-meta-label">Aos cuidados de</div><div class="cover-meta-val">Síndico Marcio Dantas</div></div>
+      <div><div class="cover-meta-label">Data</div><div class="cover-meta-val">30 de julho de 2026</div></div>
+      <div><div class="cover-meta-label">Validade</div><div class="cover-meta-val">30 dias</div></div>
     </div>
   </div>
 </header>
+
+<!-- NAV sticky -->
+<nav class="nav">
+  <div class="mark sm">agente<span class="sep"></span><span class="lab">lab</span></div>
+  <div class="nav-tag"><span class="signal-dot"></span> agente•condo · Cliente fundador</div>
+  <a href="https://wa.me/5521987934929" target="_blank" class="btn btn-emerald">Falar no WhatsApp</a>
+</nav>
 
 <!-- 01 — QUEM SOMOS -->
 <section class="section">
@@ -318,22 +406,57 @@ body::before {
     </div>
     <div class="prose">
       <p>A <strong>agente•lab</strong> é um estúdio de produtos digitais. Não vendemos sistema de prateleira — nós <strong>construímos software sob medida</strong> para o jeito que cada operação realmente funciona, e cuidamos de tudo: infraestrutura, segurança, integrações e evolução contínua.</p>
-      <p>Trabalhamos com as ferramentas oficiais do mercado — incluindo a <strong>API Oficial da Meta (WhatsApp Business)</strong> — para entregar automações que conversam com o cliente final de forma confiável e dentro das regras. Da nossa casa já nasceram produtos como a <strong>agente•school</strong> (gestão para escolas e cursos), e agora damos o mesmo cuidado à gestão de condomínios.</p>
-      <p>Para o Viverde, isso significa um parceiro único: <strong>desenvolvemos, hospedamos e mantemos</strong> o sistema. A portaria usa. Os moradores recebem. E a administração acompanha tudo.</p>
+      <p>Trabalhamos com as ferramentas oficiais do mercado — incluindo a <strong>API Oficial da Meta (WhatsApp Business)</strong> — para entregar automações que conversam com o cliente final de forma confiável e dentro das regras.</p>
+      <p>Cada produto nosso resolve a dor de um setor. E a forma como trabalhamos é sempre a mesma: começamos com <strong>um cliente real</strong>, construímos junto, e a partir dali o produto amadurece. Foi assim com a escola. Agora é a vez do condomínio — e o Viverde é esse primeiro cliente.</p>
     </div>
     <div class="stat-row">
-      <div class="stat-cell"><div class="stat-num">100%</div><div class="stat-label">Sob medida — construído para a rotina do Viverde, não adaptado de um sistema genérico.</div></div>
+      <div class="stat-cell"><div class="stat-num">100%</div><div class="stat-label">Sob medida — construído para a rotina real, não adaptado de um sistema genérico.</div></div>
       <div class="stat-cell"><div class="stat-num">API<em> oficial</em></div><div class="stat-label">Integração homologada com a Meta. Nada de números não-oficiais que caem sem aviso.</div></div>
-      <div class="stat-cell"><div class="stat-num">∞</div><div class="stat-label">Usuários ilimitados. Toda a portaria e a administração usam sem custo por acesso.</div></div>
+      <div class="stat-cell"><div class="stat-num">Fim<em> a fim</em></div><div class="stat-label">Desenvolvemos, hospedamos e mantemos. Um parceiro só, do código ao suporte.</div></div>
     </div>
   </div>
 </section>
 
-<!-- 02 — O DESAFIO -->
+<!-- 02 — O QUE FIZEMOS -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-num">02<small>O desafio</small></div>
+      <div class="section-num">02<small>O que fizemos</small></div>
+      <div>
+        <h2 class="section-title">Uma <em>casa de produtos</em> — e o condo é o próximo.</h2>
+        <p class="section-lead">Cada linha abaixo é um produto da agente•lab. Alguns já no ar, um nascendo agora com o Viverde, outros no forno. Todos com o mesmo DNA: construídos com um cliente real, não numa sala fechada.</p>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-name">agente<span class="mk-dot"></span>school</div>
+        <div class="tl-desc">Sistema completo de gestão para escolas, cursos e faculdades — matrículas, comunicação e automação com as famílias. No ar e rodando.</div>
+        <div class="tl-badge live">Live</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-name">agente<span class="mk-dot"></span>condo</div>
+        <div class="tl-desc">Gestão de encomendas e comunicação para condomínios. O produto desta proposta — e o Viverde é o condomínio fundador que o coloca no mundo.</div>
+        <div class="tl-badge now">Nasce aqui</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-name">agente<span class="mk-dot"></span>crm</div>
+        <div class="tl-desc">Relacionamento e vendas para pequenos negócios, com WhatsApp oficial no centro.</div>
+        <div class="tl-badge soon">Em breve</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-name">agente<span class="mk-dot"></span>mkt</div>
+        <div class="tl-desc">Automação de marketing e campanhas para quem não tem uma agência inteira por trás.</div>
+        <div class="tl-badge soon">Em breve</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — O DESAFIO -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">03<small>O produto · O desafio</small></div>
       <div>
         <h2 class="section-title">Toda encomenda que chega vira <em>trabalho</em> — e risco.</h2>
         <p class="section-lead">Shopee, Mercado Livre, Amazon, Correios. O volume só cresce, e hoje a portaria administra isso no improviso: caderno, grupo de WhatsApp, memória. É onde as coisas se perdem.</p>
@@ -352,7 +475,7 @@ body::before {
         </ul>
       </div>
       <div class="problem-cell good">
-        <span class="problem-tag good">Com o sistema · No controle</span>
+        <span class="problem-tag good">Com o agente•condo · No controle</span>
         <h3 class="problem-h">A entrada gera o aviso, a prova e o <em>histórico</em>.</h3>
         <ul class="problem-list">
           <li>Foto + bloco + apartamento em segundos, direto no morador certo.</li>
@@ -366,11 +489,11 @@ body::before {
   </div>
 </section>
 
-<!-- 03 — O QUE VAMOS CONSTRUIR -->
+<!-- 04 — O QUE VAMOS CONSTRUIR -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-num">03<small>O que vamos construir</small></div>
+      <div class="section-num">04<small>O produto · Escopo</small></div>
       <div>
         <h2 class="section-title">O escopo completo, <span class="accent">item por item</span>.</h2>
         <p class="section-lead">Tudo abaixo está incluído na entrega. Organizado em quatro módulos que cobrem a jornada inteira: do recebimento à retirada, mais a comunicação com o condomínio.</p>
@@ -449,11 +572,11 @@ body::before {
   </div>
 </section>
 
-<!-- 04 — COMO FUNCIONA -->
+<!-- 05 — COMO FUNCIONA -->
 <section class="section dark-section">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-num">04<small>Como funciona</small></div>
+      <div class="section-num">05<small>O produto · Como funciona</small></div>
       <div>
         <h2 class="section-title">Da esteira à retirada, em <em>cinco passos</em>.</h2>
         <p class="section-lead">Simples para a portaria, invisível para o morador — que só sente o resultado: saber na hora que chegou.</p>
@@ -469,13 +592,13 @@ body::before {
   </div>
 </section>
 
-<!-- 05 — INVESTIMENTO -->
+<!-- 06 — INVESTIMENTO -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-num">05<small>Investimento</small></div>
+      <div class="section-num">06<small>Investimento</small></div>
       <div>
-        <h2 class="section-title">Um valor de entrada, uma <span class="accent">mensalidade justa</span>.</h2>
+        <h2 class="section-title">Preço de <span class="accent">fundador</span>, mensalidade justa.</h2>
         <p class="section-lead">Você paga pela construção do sistema uma única vez e mantém tudo funcionando com uma mensalidade — sem custo por usuário, sem surpresa.</p>
       </div>
     </div>
@@ -510,6 +633,19 @@ body::before {
       </div>
     </div>
 
+    <!-- FOUNDER -->
+    <div class="founder">
+      <div>
+        <div class="founder-tag">Por ser o primeiro</div>
+        <div class="founder-h">O que o Viverde ganha por <em>fundar o produto</em>.</div>
+      </div>
+      <ul class="founder-list">
+        <li>Preço de fundador travado — sem reajuste na virada do primeiro ano.</li>
+        <li>Voz nas próximas funcionalidades: o que o Viverde pedir, entra primeiro no roadmap.</li>
+        <li>Atenção direta da equipe que construiu — não um suporte terceirizado.</li>
+      </ul>
+    </div>
+
     <div class="included">
       <div class="included-cell"><div class="ic-label">API Meta</div><div class="ic-desc">Configuração da API Oficial incluída na implementação.</div></div>
       <div class="included-cell"><div class="ic-label">App Meta</div><div class="ic-desc">Desenvolvimento do App Meta incluído na implementação.</div></div>
@@ -519,11 +655,88 @@ body::before {
   </div>
 </section>
 
-<!-- 06 — OBSERVAÇÕES -->
+<!-- 07 — RATEIO POR CONDÔMINO -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-num">06<small>Boa-fé &amp; transparência</small></div>
+      <div class="section-num">07<small>A conta por condômino</small></div>
+      <div>
+        <h2 class="section-title">No rateio, dá <span class="accent">menos de um cafezinho</span> por apartamento.</h2>
+        <p class="section-lead">São 320 apartamentos no Viverde. Diluído entre as unidades, o sistema inteiro custa uma fração do que qualquer condômino gasta sem perceber — e a partir do 2º ano, ainda menos.</p>
+      </div>
+    </div>
+
+    <div class="rateio-head">
+      <div class="rateio-hero">
+        <div class="rh-label">Do 2º ano em diante</div>
+        <div class="rh-num">R$ 4,03<small>/mês</small></div>
+        <div class="rh-sub">por apartamento — só a mensalidade, diluída nas 320 unidades.</div>
+      </div>
+      <div class="rateio-side">
+        <div class="rh-label">1º ano · com implementação</div>
+        <div class="rh-num">R$ 5,85<small>/mês</small></div>
+        <div class="rh-sub">por apartamento, já somando a construção do sistema.</div>
+      </div>
+      <div class="rateio-side">
+        <div class="rh-label">Por apartamento · ano cheio</div>
+        <div class="rh-num">R$ 48,38<small>/ano</small></div>
+        <div class="rh-sub">a partir do 2º ano — menos que um delivery por unidade, no ano inteiro.</div>
+      </div>
+    </div>
+
+    <div class="rateio-table-wrap">
+      <table class="rateio-table">
+        <thead>
+          <tr>
+            <th>Simulação · 12 meses</th>
+            <th>Mensalidade</th>
+            <th>Implementação (10x)</th>
+            <th>Total no mês</th>
+            <th>Por apto (320)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Meses 1 a 10</td><td>R$ 1.290</td><td>R$ 700</td><td>R$ 1.990</td><td class="apto-col">R$ 6,22</td></tr>
+          <tr><td>Meses 11 e 12</td><td>R$ 1.290</td><td>—</td><td>R$ 1.290</td><td class="apto-col">R$ 4,03</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total 1º ano</td><td>R$ 15.480</td><td>R$ 7.000</td><td>R$ 22.480</td><td class="apto-col">R$ 70,25</td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="rateio-caption">Ou seja: no <strong>primeiro ano inteiro</strong>, com implementação e tudo, cada apartamento contribui com <strong>R$ 70,25</strong> — cerca de <strong>R$ 5,85 por mês</strong>. Do <strong>segundo ano em diante</strong>, cai para <strong>R$ 48,38 por ano</strong> (R$ 4,03/mês). Valores de mensagem do WhatsApp são à parte, conforme o volume de disparos.</p>
+  </div>
+</section>
+
+<!-- 08 — BENEFÍCIOS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">08<small>Benefícios para o condomínio</small></div>
+      <div>
+        <h2 class="section-title">O que o Viverde <em>ganha</em> — muito além do valor.</h2>
+        <p class="section-lead">Por R$ 4 por apartamento, o condomínio troca improviso por controle. E o retorno aparece na portaria, na assembleia e na convivência.</p>
+      </div>
+    </div>
+    <div class="ben-grid">
+      <div class="ben-cell"><div class="ben-icon">01</div><h4>Fim do <em>"não fui avisado"</em></h4><p>Cada aviso fica registrado com data e hora. A discussão entre morador e portaria simplesmente acaba.</p></div>
+      <div class="ben-cell"><div class="ben-icon">02</div><h4>Portaria mais <em>produtiva</em></h4><p>Menos tempo gerenciando pacote e respondendo "chegou minha encomenda?". Mais tempo no que importa: segurança e atendimento.</p></div>
+      <div class="ben-cell"><div class="ben-icon">03</div><h4>Segurança <em>jurídica</em></h4><p>Foto na entrada e registro de quem retirou. Prova documental que protege o condomínio em caso de extravio.</p></div>
+      <div class="ben-cell"><div class="ben-icon">04</div><h4>Portaria <em>desafogada</em></h4><p>Os lembretes automáticos fazem o morador retirar mais rápido. Menos pacote acumulado ocupando espaço e virando risco.</p></div>
+      <div class="ben-cell"><div class="ben-icon">05</div><h4>Comunicado que <em>é lido</em></h4><p>WhatsApp oficial tem alcance muito maior que mural, grupo ou papel na porta. O aviso da administração realmente chega.</p></div>
+      <div class="ben-cell"><div class="ben-icon">06</div><h4>Transparência para o <em>síndico</em></h4><p>Painel e relatórios mostram o que está pendente e o que já foi feito. Prestação de contas fácil na assembleia.</p></div>
+      <div class="ben-cell"><div class="ben-icon">07</div><h4>Condomínio <em>valorizado</em></h4><p>Portaria digital e organizada é diferencial que pesa na percepção — e no valor — dos imóveis do Viverde.</p></div>
+      <div class="ben-cell"><div class="ben-icon">08</div><h4>Zero <em>infraestrutura</em></h4><p>Nada de servidor, instalação ou TI no condomínio. Tudo roda na nuvem segura da agente•lab.</p></div>
+      <div class="ben-cell"><div class="ben-icon">09</div><h4>Custo <em>irrisório</em></h4><p>Menos de R$ 5 por apartamento no mês. Provavelmente o item mais barato e mais notado do rateio.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 — OBSERVAÇÕES -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">09<small>Boa-fé &amp; transparência</small></div>
       <div>
         <h2 class="section-title">O que é bom deixar <em>combinado</em>.</h2>
         <p class="section-lead">Pontos que valem alinhar antes de assinar — para não haver surpresa depois.</p>
@@ -533,7 +746,7 @@ body::before {
       <div class="note-row"><div class="note-icon">i</div><div class="note-body"><h4>Custo das mensagens de WhatsApp</h4><p>A Meta cobra uma tarifa por conversa iniciada (avisos e comunicados). Esse custo variável é cobrado à parte, conforme o volume mensal de disparos do condomínio, com relatório transparente. A configuração e a operação do envio já estão inclusas.</p></div></div>
       <div class="note-row"><div class="note-icon">§</div><div class="note-body"><h4>Proteção de dados (LGPD)</h4><p>Fotos e dados dos moradores são tratados com finalidade específica (aviso de encomenda e comunicação do condomínio), armazenados em ambiente seguro e com opção de descadastro. Formalizamos isso em contrato.</p></div></div>
       <div class="note-row"><div class="note-icon">◷</div><div class="note-body"><h4>Prazo de implementação</h4><p>Após o aceite e a liberação dos dados dos moradores, iniciamos a construção. O cronograma detalhado é apresentado na reunião de kickoff, incluindo a etapa de aprovação dos templates junto à Meta.</p></div></div>
-      <div class="note-row"><div class="note-icon">↗</div><div class="note-body"><h4>Reajuste</h4><p>A mensalidade é reajustada anualmente pela variação do IPCA, mantendo o serviço sustentável ao longo do tempo.</p></div></div>
+      <div class="note-row"><div class="note-icon">★</div><div class="note-body"><h4>Produto em evolução</h4><p>Como cliente fundador, o Viverde acompanha o agente•condo crescer. Novas funções entram para todos — e as prioridades do Viverde têm assento na mesa.</p></div></div>
     </div>
   </div>
 </section>
@@ -541,11 +754,11 @@ body::before {
 <!-- CTA FINAL -->
 <section class="section dark-section cta-final">
   <div class="wrap">
-    <div class="hero-eyebrow" style="justify-content:center;">Vamos começar</div>
-    <h2 class="section-title">Uma portaria mais leve para o Viverde <em>começa com um sim</em>.</h2>
+    <div class="cover-eyebrow" style="justify-content:center;">Vamos começar</div>
+    <h2 class="section-title">O agente•condo começa <em>no Viverde</em>.</h2>
     <p class="section-lead">Aprovada a proposta, agendamos o kickoff e colocamos a construção em marcha. O Marcio e a administração acompanham cada etapa.</p>
     <div class="cta-ctas">
-      <a href="https://wa.me/5521987934929?text=Ol%C3%A1!%20Sou%20do%20Condom%C3%ADnio%20Viverde%20e%20quero%20seguir%20com%20a%20proposta%20do%20sistema." target="_blank" class="btn btn-emerald lg">Aprovar e falar no WhatsApp</a>
+      <a href="https://wa.me/5521987934929?text=Ol%C3%A1!%20Sou%20do%20Condom%C3%ADnio%20Viverde%20e%20quero%20seguir%20com%20a%20proposta%20do%20agente.condo." target="_blank" class="btn btn-emerald lg">Aprovar e falar no WhatsApp</a>
       <a href="https://wa.me/5521987934929?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20a%20proposta%20do%20Viverde." target="_blank" class="btn btn-outline lg" style="color:var(--paper);border-color:var(--paper);">Tirar dúvidas</a>
     </div>
     <div class="cta-signature">
@@ -579,9 +792,9 @@ body::before {
       <div>
         <div class="footer-col-h">— Esta proposta</div>
         <ul class="footer-col-list">
+          <li><span>agente•condo · cliente fundador</span></li>
           <li><span>Condomínio Viverde Residencial</span></li>
           <li><span>Síndico Marcio Dantas</span></li>
-          <li><span>Micro SaaS de encomendas</span></li>
           <li><span>Válida por 30 dias</span></li>
         </ul>
       </div>
