@@ -425,14 +425,49 @@ h2.big em { color: var(--signal); font-style: italic; font-variation-settings: "
   .hero-ctas .btn, .cta-final .btn { width: 100%; justify-content: center; }
 }
 @media print {
+  @page { size: A4; margin: 0; }
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   .hero .h-anim { opacity: 1 !important; transform: none !important; animation: none !important; }
   .topfix, .floatcta { display: none !important; }
   body::after { display: none !important; }
   html, body { background: var(--paper) !important; }
-  .hero { padding-top: 48px !important; }
-  .sec-pad { padding: 56px 0 !important; }
+  .wrap { padding: 0 38px !important; }
   a { text-decoration: none !important; }
+  /* ritmo vertical comprimido — menos paginas, menos buracos */
+  .sec-pad { padding: 30px 0 !important; }
+  .hero { padding: 30px 0 26px !important; }
+  h2.big { margin-top: 14px !important; }
+  .lead { margin-top: 14px !important; }
+  .hero-meta { margin-top: 28px !important; padding-top: 20px !important; }
+  .axis-div { margin: 28px 0 16px !important; }
+  .stat-grid, .tri, .steps, .cred-grid, .rateio, .ben-grid, .incl, .plan, .flowbar, .coexist, .ben-feature { margin-top: 28px !important; }
+  .mock { margin-bottom: 14px !important; }
+  .notes { margin-top: 20px !important; }
+  .sign { margin-top: 30px !important; padding-top: 20px !important; }
+  .foot { padding: 36px 0 26px !important; }
+  .foot-mark { margin-bottom: 26px !important; }
+  /* mockups mais compactos para caber 2 por pagina */
+  .win-body, .wa-body { padding: 13px 15px !important; }
+  .recon td { padding: 6px 10px !important; }
+  .recon th { padding-bottom: 7px !important; }
+  .win-bar { padding: 9px 14px !important; }
+  .app-head { margin-bottom: 11px !important; }
+  .recon-foot { margin-top: 11px !important; padding-top: 11px !important; }
+  .mock-layout { gap: 30px !important; }
+  .dash-m { gap: 12px !important; } .dash-kpis { gap: 8px !important; }
+  .kpi { padding: 9px 12px !important; }
+  .chart-card, .insight-card { padding: 11px 14px !important; }
+  .bars { height: 66px !important; }
+  .wa-body { gap: 8px !important; }
+  .ben-feature { padding: 26px 30px !important; }
+  /* nunca cortar blocos no meio */
+  .stat, .tri-card, .step-c, .cred, .ben, .ben-feature, .rcard, .note, .incl-c,
+  .coexist, .guarantee, .mock, .mock-layout, .window, .wa, .fnode, .flowbar,
+  .plan-main, .plan-delta, .kpi, .chart-card, .insight-card {
+    break-inside: avoid !important;
+  }
+  /* manter titulo grudado no conteudo seguinte */
+  .eyebrow, h1, h2, h2.big, h3, h4, .axis-div, .section-head { break-after: avoid !important; }
 }
 </style>
 </head>
