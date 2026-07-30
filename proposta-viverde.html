@@ -143,6 +143,17 @@ h2.big em { color: var(--signal); font-style: italic; font-variation-settings: "
 .tri-card h3 { font-family: var(--serif); font-weight: 400; font-size: 24px; letter-spacing: -0.02em; margin-bottom: 12px; font-variation-settings: "opsz" 144, "SOFT" 50; }
 .tri-card p { font-size: 15px; line-height: 1.55; color: var(--gray-deep); }
 .tri-card.hot p { color: rgba(244,242,236,0.8); }
+/* coexiste com o sistema atual */
+.coexist { margin-top: 44px; padding: 34px 38px; border: 1px solid var(--rule); border-left: 4px solid var(--signal); border-radius: 16px; background: #fff; }
+.coexist .cox-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal-deep); margin-bottom: 12px; }
+.coexist h3 { font-family: var(--serif); font-weight: 400; font-size: 26px; letter-spacing: -0.02em; margin-bottom: 12px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+.coexist h3 em { font-style: italic; color: var(--signal); font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
+.coexist p { font-size: 16px; line-height: 1.6; color: var(--gray-deep); max-width: 72ch; }
+/* garantia (sobre fundo escuro) */
+.guarantee { display: grid; grid-template-columns: 46px 1fr; gap: 18px; align-items: center; margin-top: 40px; padding: 24px 30px; border: 1px solid var(--signal); border-radius: 16px; background: var(--signal-soft); }
+.guarantee .g-ico { width: 46px; height: 46px; border-radius: 50%; background: var(--signal); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; }
+.guarantee .g-tx { font-size: 15px; line-height: 1.55; color: rgba(244,242,236,0.9); }
+.guarantee .g-tx b { color: var(--paper); font-weight: 700; }
 
 /* eixo divider */
 .axis-div { display: flex; align-items: center; gap: 16px; margin: 70px 0 32px; }
@@ -545,6 +556,12 @@ h2.big em { color: var(--signal); font-style: italic; font-variation-settings: "
         <p>Mensagem oficial 1 a 1 no WhatsApp do morador certo, que ele abre na hora — e lembra sozinho até a retirada. Com registro de tudo, sob a marca do Viverde.</p>
       </div>
     </div>
+
+    <div class="coexist rv">
+      <div class="cox-tag">Sem trocar o que já funciona</div>
+      <h3>Convive com o sistema que o Viverde <em>já usa</em>.</h3>
+      <p>O sistema de gestão atual continua cuidando de boleto, reserva e chamado — a gente não substitui nada disso. O que fazemos é somar a única coisa que app de condomínio não entrega bem: o recado chegando no WhatsApp, onde o morador realmente lê. Um trabalha ao lado do outro, sem retrabalho para a administração.</p>
+    </div>
   </div>
 </section>
 
@@ -662,7 +679,7 @@ h2.big em { color: var(--signal); font-style: italic; font-variation-settings: "
               </div>
               <div class="insight-card"><div class="card-h">Alertas do sistema</div>
                 <div class="insight-row"><div class="insight-ico warn"></div><div class="insight-tx"><b>3 encomendas há +5 dias:</b> lembrete reforçado enviado aos moradores.</div></div>
-                <div class="insight-row"><div class="insight-ico good"></div><div class="insight-tx"><b>Lembrete de boleto enviado:</b> vencimento dia 10 avisado a 320 aptos — inadimplência em queda.</div></div>
+                <div class="insight-row"><div class="insight-ico good"></div><div class="insight-tx"><b>Lembrete de boleto:</b> enviado só aos aptos que ainda não pagaram o vencimento do dia 10.</div></div>
                 <div class="insight-row"><div class="insight-ico good"></div><div class="insight-tx"><b>Portaria em dia:</b> 86% das encomendas retiradas em até 2 dias.</div></div>
               </div>
             </div>
@@ -786,7 +803,7 @@ h2.big em { color: var(--signal); font-style: italic; font-variation-settings: "
       <div>
         <div class="bf-k">Bônus que o síndico sente no caixa</div>
         <div class="bf-h">Menos <em>inadimplência</em>, sem cobrar ninguém.</div>
-        <p class="bf-p">O sistema lembra cada morador do <b>vencimento do condomínio no WhatsApp</b> — na véspera e no dia. A maior parte da inadimplência é esquecimento, não falta de dinheiro. Boleto lembrado é boleto pago: <b>a arrecadação do mês fecha mais redonda</b>.</p>
+        <p class="bf-p">Integrado à emissão do boleto do condomínio, o sistema lembra do <b>vencimento no WhatsApp</b> — na véspera e no dia — <b>só quem ainda não pagou</b>, sem incomodar quem já quitou. A maior parte da inadimplência é esquecimento, não falta de dinheiro: boleto lembrado é boleto pago, e <b>a arrecadação do mês fecha mais redonda</b>. Funciona junto com a sua administradora.</p>
       </div>
       <div class="bf-right">
         <div class="wa" style="max-width:320px">
@@ -862,8 +879,15 @@ h2.big em { color: var(--signal); font-style: italic; font-variation-settings: "
     </div>
 
     <div class="notes" style="margin-top:40px">
-      <div class="note" style="background:transparent;border-color:rgba(244,242,236,0.15)"><div class="ni">i</div><div><h4 style="color:var(--paper)">Custo das mensagens de WhatsApp</h4><p style="color:rgba(244,242,236,0.7)">A Meta cobra uma tarifa por conversa iniciada. Esse custo variável é à parte, conforme o volume mensal de disparos, com relatório transparente. A configuração e a operação do envio já estão inclusas.</p></div></div>
-      <div class="note" style="background:transparent;border-color:rgba(244,242,236,0.15)"><div class="ni">§</div><div><h4 style="color:var(--paper)">LGPD &amp; reajuste</h4><p style="color:rgba(244,242,236,0.7)">Dados e fotos tratados com finalidade específica, em ambiente seguro e com opção de descadastro — formalizado em contrato. Mensalidade reajustada anualmente pelo IPCA.</p></div></div>
+      <div class="note" style="background:transparent;border-color:rgba(244,242,236,0.15)"><div class="ni">i</div><div><h4 style="color:var(--paper)">Custo das mensagens de WhatsApp</h4><p style="color:rgba(244,242,236,0.7)">A Meta cobra uma tarifa por conversa. Para o volume de um condomínio deste porte, a estimativa fica em torno de <b style="color:var(--paper)">R$ 90 a R$ 180/mês</b> — e a gente combina um <b style="color:var(--paper)">teto</b>, com relatório transparente, para você nunca ser surpreendido. Configuração e operação do envio já inclusas.</p></div></div>
+      <div class="note" style="background:transparent;border-color:rgba(244,242,236,0.15)"><div class="ni">◷</div><div><h4 style="color:var(--paper)">Prazo de implementação</h4><p style="color:rgba(244,242,236,0.7)">No ar em <b style="color:var(--paper)">até 3 semanas</b> após o aceite e o envio da lista de moradores (planilha). Inclui a aprovação dos templates junto à Meta.</p></div></div>
+      <div class="note" style="background:transparent;border-color:rgba(244,242,236,0.15)"><div class="ni">§</div><div><h4 style="color:var(--paper)">LGPD</h4><p style="color:rgba(244,242,236,0.7)">O condomínio é o <b style="color:var(--paper)">controlador</b> dos dados; a agente.lab é a <b style="color:var(--paper)">operadora</b>, com contrato de tratamento. Dados e fotos em ambiente seguro no Brasil, com finalidade específica e descadastro a qualquer momento.</p></div></div>
+      <div class="note" style="background:transparent;border-color:rgba(244,242,236,0.15)"><div class="ni">↻</div><div><h4 style="color:var(--paper)">Suporte &amp; cancelamento</h4><p style="color:rgba(244,242,236,0.7)">Suporte e manutenção inclusos na mensalidade. <b style="color:var(--paper)">Sem fidelidade longa</b>: cancela com aviso de 30 dias. Reajuste anual pelo IPCA.</p></div></div>
+    </div>
+
+    <div class="guarantee rv">
+      <div class="g-ico">✓</div>
+      <div class="g-tx"><b>Garantia de 60 dias.</b> Se em dois meses a portaria não sentir a diferença, você cancela sem multa e sem custo de saída. O risco de ser o primeiro condomínio é nosso — não seu.</div>
     </div>
 
     <div class="hero-ctas rv" style="margin-top:44px">
